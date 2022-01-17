@@ -4,8 +4,9 @@ TimetableGrabber - SIT is a tool that allows you to grab and export your trimest
 
 ### Why TimetableGrabber - SIT?
 
-* SIT's website does not offer exporting of .ics files out of the box
-* TimetableGrabber - SIT is simple to use
+* SIT's website does not offer exporting weekly schedule
+* TimetableGrabber - SIT is simple and easy to use
+* `.ics` format works across all calendar applications from mobile to desktop
 
 ### Requirements
 * [.NET Framework 4.8](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48)
@@ -20,7 +21,8 @@ TimetableGrabber - SIT is a tool that allows you to grab and export your trimest
 <img src="https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/86d02770d3649c7e73ad78ba766c66389170505c/Picture%201.png" />
 <img src="https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/86d02770d3649c7e73ad78ba766c66389170505c/Picture%202.png" />
 
-###### .ICS
+###### Exported to iOS
+<img src="https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/86d02770d3649c7e73ad78ba766c66389170505c/Picture%203.png" />
 <img src="https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/86d02770d3649c7e73ad78ba766c66389170505c/Picture%203.png" />
 
 ### Credits
