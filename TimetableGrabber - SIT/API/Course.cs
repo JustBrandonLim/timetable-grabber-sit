@@ -9,17 +9,19 @@ namespace TimetableGrabber___SIT.API
     internal class Course
     {
         public string Name { get; set; }
-        public string Date { get; set; }
-        public string StartTime { get; set; }
-        public string EndTime { get; set; }
+        public string Section { get; set; }
+        public string Component { get; set; }
+        public DateTime StartDateTime { get; set; }
+        public DateTime EndDateTime { get; set; }
         public string Location { get; set; }
 
-        public Course(string name, string date, string startTime, string endTime, string location)
+        public Course(string name, string section, string component, DateTime startDateTime, DateTime endDateTime, string location)
         {
             Name = name;
-            Date = date;
-            StartTime = startTime;
-            EndTime = endTime;
+            Section = section;
+            Component = component;
+            StartDateTime = startDateTime;
+            EndDateTime = endDateTime;
             Location = location;
         }
     }

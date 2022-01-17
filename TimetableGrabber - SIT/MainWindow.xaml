@@ -5,11 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TimetableGrabber___SIT"
         mc:Ignorable="d"
-        Title="TimetableGrabber - SIT (V1.0)"
+        Title="TimetableGrabber - SIT (V1.1)"
         Height="450"
         Width="400"
         MinHeight="450"
-        MinWidth="400">
+        MinWidth="400"
+        ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -37,7 +39,7 @@
                     Grid.Column="2"/>
                 <TextBox
                     Name="TextBoxUsername"
-                    Text="2100893@sit.singaporetech.edu.sg"
+                    Text="id@sit.singaporetech.edu.sg"
                     Margin="5, 0, 5, 0"/>
 
                 <Label
@@ -51,31 +53,17 @@
             </StackPanel>
         </GroupBox>
         <GroupBox
-            Header="Settings"
+            Header="Logs"
             Margin="5"
             Grid.Row="1"
             Grid.Column="0"
             Grid.ColumnSpan="3">
-            <StackPanel
-                VerticalAlignment="Center">
-                <Label
-                    Content="Trimester Start Date:"
-                    Margin="5, 5, 5, 0"
-                    Grid.Row="2"
-                    Grid.Column="2"/>
-                <TextBox
-                    Name="TextBoxTrimesterStartDate"
-                    Text="10/01/2022"
-                    Margin="5, 0, 5, 5"/>
-                <CheckBox
-                    Name="CheckBoxExportForIOS"
-                    Content="Export for iOS"
-                    Margin="5"/>
-                <CheckBox
-                    Name="CheckBoxExportForAndroid"
-                    Content="Export for Android"
-                    Margin="5"/>
-            </StackPanel>
+            <TextBox
+                Name="TextBoxLogs"
+                IsReadOnly="True"
+                TextWrapping="Wrap"
+                VerticalScrollBarVisibility="Visible"
+                Margin="5"/>
         </GroupBox>
         <Button
             Name="ButtonStart"
@@ -85,6 +73,7 @@
             Grid.Column="0"
             Click="ButtonStart_Click"/>
         <Label
+            Name="LabelStatus"
             Content="Waiting..."
             Foreground="Blue"
             HorizontalAlignment="Center"

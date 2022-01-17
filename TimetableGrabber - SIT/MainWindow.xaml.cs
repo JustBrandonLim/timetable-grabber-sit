@@ -27,34 +27,43 @@ namespace TimetableGrabber___SIT
         public MainWindow()
         {
             InitializeComponent();
-
-            in4sit = new IN4SIT();
+            in4sit = new IN4SIT(this);
         }
 
         private async void ButtonStart_Click(object sender, RoutedEventArgs e)
         {
-            if (String.IsNullOrWhiteSpace(TextBoxUsername.Text) || String.IsNullOrWhiteSpace(PasswordBoxPassword.Password))
+            string username = TextBoxUsername.Text;
+            string password = PasswordBoxPassword.Password;
+
+            if (String.IsNullOrWhiteSpace(username) || String.IsNullOrWhiteSpace(password))
                 MessageBox.Show("Please enter your username or password!", "TimetableGrabber - SIT", MessageBoxButton.OK, MessageBoxImage.Error);
-            else 
+            else
             {
-                bool chromeCreated = await in4sit.CreateChromeInstance();
-                if (chromeCreated)
+                bool succeeded = await Task.Run(() => in4sit.Start(username, password));//in4sit.Start(TextBoxUsername.Text, PasswordBoxPassword.Password));
+                if (succeeded)
                 {
-                    bool loginSuccess = await in4sit.Login(TextBoxUsername.Text, PasswordBoxPassword.Password);
-                    if (loginSuccess)
-                    {
-                        bool test1 = await in4sit.AccessCourseManagement();
-                        bool test2 = await in4sit.AccessMyWeeklySchedule();
-                        bool test3 = await in4sit.GoToTrimesterStartDate(TextBoxTrimesterStartDate.Text);
-                        bool test4 = await in4sit.ScrapeSchedule();
-                        bool close = await in4sit.CloseChromeInstance();
-                    }
-                    else
-                        MessageBox.Show("Could not login to IN4SIT!", "TimetableGrabber - SIT", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Your timetable has been exported!", "TimetableGrabber - SIT", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
-                    MessageBox.Show("Chrome could not be started!", "TimetableGrabber - SIT", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Something went wrong!", "TimetableGrabber - SIT", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        public async Task Log(string logMessage)
+        {
+            await TextBoxLogs.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                TextBoxLogs.AppendText(String.Format("[{0}]: {1}\n", DateTime.Now.ToShortTimeString(), logMessage));
+                TextBoxLogs.ScrollToEnd();
+            }));
+        }
+
+        public async Task SetStatus(string status)
+        {
+            await LabelStatus.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                LabelStatus.Content = status;
+            }));
         }
     }
 }
