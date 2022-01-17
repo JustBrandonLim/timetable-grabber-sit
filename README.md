@@ -18,12 +18,12 @@ TimetableGrabber - SIT is a tool that allows you to grab and export your trimest
 
 ### Screenshots
 ###### UI
-<img src="https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/86d02770d3649c7e73ad78ba766c66389170505c/Picture%201.png" />
-<img src="https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/86d02770d3649c7e73ad78ba766c66389170505c/Picture%202.png" />
+<img src="https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/master/Picture1.png" />
+<img src="https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/master/Picture2.png" />
 
 ###### Exported to iOS
-<img src="https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/86d02770d3649c7e73ad78ba766c66389170505c/Picture%203.png" />
-<img src="https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/86d02770d3649c7e73ad78ba766c66389170505c/Picture%203.png" />
+<img src="https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/master/Picture3.png" />
+<img src="https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/master/Picture4.png" />
 
 ### Credits
 * [Selenium](https://www.selenium.dev)
