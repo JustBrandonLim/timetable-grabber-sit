@@ -5,13 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TimetableGrabber___SIT"
         mc:Ignorable="d"
-        Title="TimetableGrabber - SIT (V1.1)"
+        Title="TimetableGrabber - SIT (V1.2)"
         Height="450"
         Width="400"
         MinHeight="450"
         MinWidth="400"
         ResizeMode="CanMinimize"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        Icon="TimetableGrabber - SIT.png">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -25,7 +26,7 @@
         </Grid.ColumnDefinitions>
 
         <GroupBox
-            Header="Account Details"
+            Header="Settings"
             Margin="5"
             Grid.Row="0"
             Grid.Column="0"
@@ -40,16 +41,16 @@
                 <TextBox
                     Name="TextBoxUsername"
                     Text="id@sit.singaporetech.edu.sg"
-                    Margin="5, 0, 5, 0"/>
+                    Margin="5, 0, 5, 5"/>
 
                 <Label
                     Content="Password:"
                     Margin="5, 5, 5, 0"
                     Grid.Row="2"
-                    Grid.Column="2"/>   
+                    Grid.Column="2"/>
                 <PasswordBox
                     Name="PasswordBoxPassword"
-                    Margin="5, 0, 5, 0"/>
+                    Margin="5, 0, 5, 5"/>
             </StackPanel>
         </GroupBox>
         <GroupBox

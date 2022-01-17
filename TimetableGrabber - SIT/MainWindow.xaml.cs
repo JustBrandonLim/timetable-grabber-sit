@@ -35,18 +35,25 @@ namespace TimetableGrabber___SIT
             string username = TextBoxUsername.Text;
             string password = PasswordBoxPassword.Password;
 
+            ButtonStart.IsEnabled = false;
+
             if (String.IsNullOrWhiteSpace(username) || String.IsNullOrWhiteSpace(password))
                 MessageBox.Show("Please enter your username or password!", "TimetableGrabber - SIT", MessageBoxButton.OK, MessageBoxImage.Error);
             else
             {
-                bool succeeded = await Task.Run(() => in4sit.Start(username, password));//in4sit.Start(TextBoxUsername.Text, PasswordBoxPassword.Password));
-                if (succeeded)
+                if (MessageBox.Show("By running this application, you agree that you are responsible for your own account!\nPlease also ensure that your username and password is correct!\nYou can compile the program yourself if you are not comfortable.", "TimetableGrabber - SIT", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                 {
-                    MessageBox.Show("Your timetable has been exported!", "TimetableGrabber - SIT", MessageBoxButton.OK, MessageBoxImage.Information);
+                    bool succeeded = await Task.Run(() => in4sit.Start(username, password));
+                    if (succeeded)
+                    {
+                        MessageBox.Show("Your timetable has been exported!", "TimetableGrabber - SIT", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    else
+                        MessageBox.Show("Something went wrong!", "TimetableGrabber - SIT", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                else
-                    MessageBox.Show("Something went wrong!", "TimetableGrabber - SIT", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
+            ButtonStart.IsEnabled = true;
         }
 
         public async Task Log(string logMessage)

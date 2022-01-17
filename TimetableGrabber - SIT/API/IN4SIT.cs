@@ -229,7 +229,6 @@ namespace TimetableGrabber___SIT.API
                         Start = new CalDateTime(course.StartDateTime),
                         End = new CalDateTime(course.EndDateTime),
                         Location = course.Location
-
                     };
 
                     exportCalendar.Events.Add(calendarEvent);
@@ -238,7 +237,7 @@ namespace TimetableGrabber___SIT.API
                 CalendarSerializer calendarSerializer = new CalendarSerializer();
                 string serializedCalendar = calendarSerializer.SerializeToString(exportCalendar);
 
-                File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "/timetable.ics", serializedCalendar);
+                File.WriteAllText(string.Format("{0}/{1}_timetable.ics", AppDomain.CurrentDomain.BaseDirectory, DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss")), serializedCalendar); ;
 
                 await mainWindow.Log("Exported schedule...");
                 #endregion
