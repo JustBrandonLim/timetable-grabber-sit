@@ -19,6 +19,8 @@ TimetableGrabber - SIT is a tool that allows you to grab and export your trimest
 ###### UI
 <img src="https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/86d02770d3649c7e73ad78ba766c66389170505c/Picture%201.png" />
 <img src="https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/86d02770d3649c7e73ad78ba766c66389170505c/Picture%202.png" />
+
+###### .ICS
 <img src="https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/86d02770d3649c7e73ad78ba766c66389170505c/Picture%203.png" />
 
 ### Credits
