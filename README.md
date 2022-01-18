@@ -4,10 +4,10 @@ TimetableGrabber - SIT is a tool that allows you to grab and export your trimest
 
 ### Why TimetableGrabber - SIT?
 
-* SIT's website does not offer exporting weekly schedule
-* TimetableGrabber - SIT is simple and easy to use
-* TimetableGrabber - SIT is open sourced
-* `.ics` format works across all calendar applications from mobile to desktop
+* SIT's website does not offer exporting of weekly schedule.
+* TimetableGrabber - SIT is very simple and easy to use.
+* TimetableGrabber - SIT is open sourced.
+* `.ics` format works across all calendar applications from mobile to desktop.
 
 ### Requirements
 * [.NET Framework 4.8](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48/)
@@ -31,6 +31,11 @@ TimetableGrabber - SIT is a tool that allows you to grab and export your trimest
 
 ### Donations
 * Tennyson Koh - $0.99 SGD
+
+### Issues
+* There are no known issues as of 18/01/2022.
+* TimetableGrabber - SIT might still require more testing.
+* If there are issues, please submit an issue [here](https://github.com/JustBrandonLim/TimetableGrabber-SIT/issues/)!
 
 ### Credits
 * [Selenium](https://www.selenium.dev/)
