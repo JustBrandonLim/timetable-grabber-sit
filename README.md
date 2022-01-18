@@ -7,7 +7,7 @@ TimetableGrabber - SIT is a tool that allows you to grab and export your trimest
 * SIT's website does not offer exporting of weekly schedule.
 * TimetableGrabber - SIT is very simple and easy to use.
 * TimetableGrabber - SIT is open sourced.
-* `.ics` format works across all calendar applications from mobile to desktop.
+* The `.ics` format works across all calendar applications from mobile to desktop.
 
 ### Requirements
 * [.NET Framework 4.8](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48/)
