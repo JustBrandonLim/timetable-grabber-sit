@@ -17,6 +17,8 @@ TimetableGrabber - SIT is a tool that allows you to grab and export your trimest
 ### How to use?
 * Download from [here](https://github.com/JustBrandonLim/TimetableGrabber-SIT#releases).
 * Extract the `.zip` to a folder, and run `TimetableGrabber - SIT (V?.?.?).exe`.
+* Fill up the details and run the program.
+* Once the program has finished, you should see a `.ics` file appear in the same folder.
 
 ### Releases
 * Get the latest release [here](https://github.com/JustBrandonLim/TimetableGrabber---SIT/releases/)!
