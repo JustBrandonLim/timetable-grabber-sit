@@ -14,14 +14,14 @@ TimetableGrabber - SIT is a tool that allows you to grab and export your trimest
 * [Google Chrome](https://www.google.com/intl/en_sg/chrome/)
 * [Chromedriver](https://chromedriver.chromium.org/downloads/)
 
-### How to use?
-* Download from [here](https://github.com/JustBrandonLim/TimetableGrabber-SIT#releases).
-* Extract the `.zip` to a folder, and run `TimetableGrabber - SIT (V?.?.?).exe`.
-* Fill up the details and run the program.
-* Once the program has finished, you should see a `.ics` file appear in the same folder.
-
 ### Releases
 * Get the latest release [here](https://github.com/JustBrandonLim/TimetableGrabber---SIT/releases/)!
+
+### How to use?
+* Ensure that your Chrome installed matches the Chromedriver version.
+* Once downloaded, extract the `.zip` to a folder, and run `TimetableGrabber - SIT (V?.?.?).exe`.
+* Fill up the details and run the program.
+* Once the program has finished, you should see a `.ics` file appear in the same folder.
 
 ### Screenshots
 ###### UI
