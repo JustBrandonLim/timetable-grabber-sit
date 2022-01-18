@@ -42,13 +42,14 @@ namespace TimetableGrabber___SIT.API
                 chromeDriverService.HideCommandPromptWindow = true;
 
                 ChromeOptions chromeOptions = new ChromeOptions();
-                //chromeOptions.AddArgument("headless");
+                chromeOptions.AddArgument("headless");
+                chromeOptions.AddArgument("--window-size=1920,1080");
 
                 webDriverInstance = new ChromeDriver(chromeDriverService, chromeOptions);
 
                 webDriverInstance.Manage().Window.Maximize();
 
-                webDriverInstance.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
+                webDriverInstance.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
 
                 await mainWindow.Log("Created Chrome...");
 
@@ -109,7 +110,7 @@ namespace TimetableGrabber___SIT.API
                 await mainWindow.Log("Clicked \"Sign in\"...");
 
                 await mainWindow.Log("Waiting for \"Course Management\"...");
-                await Task.Delay(3000);
+                await Task.Delay(5000);
 
                 await mainWindow.Log("Clicking \"Course Management\"...");
                 IWebElement courseManagement = webDriverInstance.FindElement(By.XPath("//div[contains(@onclick, 'https://in4sit.singaporetech.edu.sg/psc/CSSISSTD_newwin/EMPLOYEE/SA/c/NUI_FRAMEWORK.PT_AGSTARTPAGE_NUI.GBL?CONTEXTIDPARAMS=TEMPLATE_ID%3aPTPPNAVCOL&scname=ADMN_MODULE_MANAGEMENT&PTPPB_GROUPLET_ID=N_SR_MODULE_MATTERS&CRefName=ADMN_NAVCOLL_18&AJAXTRANSFER=Y')]"));
@@ -117,15 +118,16 @@ namespace TimetableGrabber___SIT.API
                 await mainWindow.Log("Clicked \"Course Management\"...");
 
                 await mainWindow.Log("Waiting for \"Weekly Schedule\"...");
-                await Task.Delay(3000);
+                await Task.Delay(5000);
 
                 await mainWindow.Log("Clicking \"Weekly Schedule\"...");
-                IWebElement weeklySchedule = webDriverInstance.FindElement(By.XPath("//div[contains(@href, 'https://in4sit.singaporetech.edu.sg/psc/CSSISSTD_newwin/EMPLOYEE/SA/c/SA_LEARNER_SERVICES.SSR_SSENRL_SCHD_W.GBL')]"));
+                IWebElement weeklySchedule = webDriverInstance.FindElement(By.CssSelector(@"#PTGP_STEP_DVW_PTGP_STEP_LABEL\$1"));
+                //IWebElement weeklySchedule = webDriverInstance.FindElement(By.XPath("//div[contains(@href, 'https://in4sit.singaporetech.edu.sg/psc/CSSISSTD_newwin/EMPLOYEE/SA/c/SA_LEARNER_SERVICES.SSR_SSENRL_SCHD_W.GBL')]"));
                 weeklySchedule.Click();
                 await mainWindow.Log("Clicked \"Weekly Schedule\"...");
 
                 await mainWindow.Log("Waiting...");
-                await Task.Delay(3000);
+                await Task.Delay(5000);
 
                 await mainWindow.Log("Switching frame...");
                 webDriverInstance.SwitchTo().Frame("main_target_win0");
@@ -137,7 +139,7 @@ namespace TimetableGrabber___SIT.API
                 await mainWindow.Log("Clicked \"List View\"...");
 
                 await mainWindow.Log("Waiting...");
-                await Task.Delay(3000);
+                await Task.Delay(5000);
                 #endregion
 
                 #region SCRAPE WEEKLY SCHEDULE LIST
@@ -172,7 +174,6 @@ namespace TimetableGrabber___SIT.API
                         {
                             HtmlNodeCollection tableColumns = tableRow.SelectNodes("td");
 
-                            //NEW EVENT
                             if (tableColumns[1].SelectSingleNode("div/span/a") != null)
                                 section = tableColumns[1].SelectSingleNode("div/span/a").InnerHtml;
 
@@ -203,8 +204,6 @@ namespace TimetableGrabber___SIT.API
                             {
                                 throw new Exception();
                             }
-
-                            await mainWindow.Log(String.Format("Adding {0}, {1}, {2}, {3}, {4}, {5}", name, section, component, startDateTime, endDateTime, location));
 
                             timetable.Add(new Course(name, section, component, startDateTime, endDateTime, location));
                         }
@@ -237,9 +236,11 @@ namespace TimetableGrabber___SIT.API
                 CalendarSerializer calendarSerializer = new CalendarSerializer();
                 string serializedCalendar = calendarSerializer.SerializeToString(exportCalendar);
 
-                File.WriteAllText(string.Format("{0}/{1}_timetable.ics", AppDomain.CurrentDomain.BaseDirectory, DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss")), serializedCalendar); ;
+                string fileName = string.Format("{0}_timetable.ics", DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss"));
 
-                await mainWindow.Log("Exported schedule...");
+                File.WriteAllText(string.Format("{0}/{1}", AppDomain.CurrentDomain.BaseDirectory, fileName), serializedCalendar); ;
+
+                await mainWindow.Log(string.Format("Exported schedule as {0}...", fileName));
                 #endregion
 
                 await mainWindow.SetStatus("Done...");
