@@ -32,6 +32,9 @@ TimetableGrabber - SIT is a tool that allows you to grab and export your trimest
 <img src="https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/master/Picture3.png/" width="500" height="500"/>
 <img src="https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/master/Picture4.png/" width="500" height="500"/>
 
+###### Exported to Android
+<img src="https://github.com/JustBrandonLim/TimetableGrabber-SIT/blob/master/PIcture5.png" width="500" height="500"/>
+
 ### Donations
 * You can buy me a coffee [here](https://ko-fi.com/justbrandonlim/)!
 * Tennyson Koh - $0.99 SGD
