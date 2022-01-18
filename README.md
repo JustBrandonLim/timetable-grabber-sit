@@ -14,6 +14,10 @@ TimetableGrabber - SIT is a tool that allows you to grab and export your trimest
 * [Google Chrome](https://www.google.com/intl/en_sg/chrome/)
 * [Chromedriver](https://chromedriver.chromium.org/downloads/)
 
+### How to use?
+* Download from [here](https://github.com/JustBrandonLim/TimetableGrabber-SIT#releases).
+* Extract the `.zip` to a folder, and run `TimetableGrabber - SIT (V?.?.?).exe`.
+
 ### Releases
 * Get the latest release [here](https://github.com/JustBrandonLim/TimetableGrabber---SIT/releases/)!
 
@@ -26,10 +30,8 @@ TimetableGrabber - SIT is a tool that allows you to grab and export your trimest
 <img src="https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/master/Picture3.png/" width="500" height="500"/>
 <img src="https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/master/Picture4.png/" width="500" height="500"/>
 
-### Support Me
-* You can buy me a coffee [here](https://ko-fi.com/justbrandonlim/)!
-
 ### Donations
+* You can buy me a coffee [here](https://ko-fi.com/justbrandonlim/)!
 * Tennyson Koh - $0.99 SGD
 
 ### Issues
