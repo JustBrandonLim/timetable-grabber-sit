@@ -59,5 +59,5 @@ TimetableGrabber - SIT is a tool that allows you to grab and export your trimest
 * [@S0meDev99](https://github.com/S0meDev99/)
 
 ### Licensing
-* Copyright 2022 [@JustBrandonLim](https:/JustBrandonLim.github.io/)
+* Copyright 2022 [@JustBrandonLim](https://JustBrandonLim.github.io/)
 * Licensed under [MIT](https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/master/LICENSE.md/)
