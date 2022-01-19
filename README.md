@@ -61,8 +61,7 @@ TimetableGrabber - SIT is a tool that allows you to grab and export your trimest
 * Tennyson Koh - $0.99 SGD
 
 ### Issues
-* There are no known issues as of 18/01/2022.
-* TimetableGrabber - SIT might still require more testing.
+* TimetableGrabber - SIT might have hidden bugs!
 * If there are issues, please submit an issue [here](https://github.com/JustBrandonLim/TimetableGrabber-SIT/issues/)!
 
 ### Testers
