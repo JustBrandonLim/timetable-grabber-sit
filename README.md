@@ -1,7 +1,6 @@
 # TimetableGrabber - SIT
 
-TimetableGrabber - SIT is a tool that allows you to grab and export your trimester's timetable to the `.ics` format where you can import it to your favourite calendar.
-
+**TimetableGrabber - SIT** is a tool that allows you to grab and export your trimester's timetable to the `.ics` format where you can import it to your favourite calendar.
 
 ![GitHub all releases](https://img.shields.io/github/downloads/JustBrandonLim/TimetableGrabber-SIT/total)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/JustBrandonLim/TimetableGrabber-SIT)
@@ -13,8 +12,8 @@ TimetableGrabber - SIT is a tool that allows you to grab and export your trimest
 ### Why TimetableGrabber - SIT?
 
 * SIT's website does not offer exporting of weekly schedule.
-* TimetableGrabber - SIT is very simple and easy to use.
-* TimetableGrabber - SIT is open sourced.
+* **TimetableGrabber - SIT** is very simple and easy to use.
+* **TimetableGrabber - SIT** is open sourced.
 * The `.ics` format works across all calendar applications from mobile to desktop.
 
 ### Requirements
@@ -26,8 +25,8 @@ TimetableGrabber - SIT is a tool that allows you to grab and export your trimest
 * Get the latest releases [here](https://github.com/JustBrandonLim/TimetableGrabber---SIT/releases/)!
 
 ### How to use?
-* Ensure that your Chrome installed matches the Chromedriver version.
-* Ensure that your [region format](https://www.howto-connect.com/change-regional-format-windows-10/) is on `English (Singapore)`. 
+* **Ensure that your Chrome installed matches the Chromedriver version.**
+* **Ensure that your [region format](https://www.howto-connect.com/change-regional-format-windows-10/) is on `English (Singapore)`.**
 * Once downloaded, extract the `.zip` to a folder, and run `TimetableGrabber - SIT (V?.?.?).exe`.
 * Fill up the details and run the program.
 * Once the program has finished, you should see a `.ics` file appear in the same folder.
