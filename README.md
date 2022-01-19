@@ -2,6 +2,14 @@
 
 TimetableGrabber - SIT is a tool that allows you to grab and export your trimester's timetable to the `.ics` format where you can import it to your favourite calendar.
 
+
+![GitHub all releases](https://img.shields.io/github/downloads/JustBrandonLim/TimetableGrabber-SIT/total)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/JustBrandonLim/TimetableGrabber-SIT)
+![GitHub last commit](https://img.shields.io/github/last-commit/JustBrandonLim/TimetableGrabber-SIT)
+![GitHub Repo stars](https://img.shields.io/github/stars/JustBrandonLim/TimetableGrabber-SIT?style=social)
+![GitHub](https://img.shields.io/github/license/JustBrandonLim/TimetableGrabber-SIT)
+![GitHub issues](https://img.shields.io/github/issues/JustBrandonLim/TimetableGrabber-SIT)
+
 ### Why TimetableGrabber - SIT?
 
 * SIT's website does not offer exporting of weekly schedule.
@@ -15,10 +23,12 @@ TimetableGrabber - SIT is a tool that allows you to grab and export your trimest
 * [Chromedriver](https://chromedriver.chromium.org/downloads/)
 
 ### Releases
+* ![GitHub all releases](https://img.shields.io/github/downloads/JustBrandonLim/TimetableGrabber-SIT/total?color=blue&label=Total%20Downloads)
 * Get the latest release [here](https://github.com/JustBrandonLim/TimetableGrabber---SIT/releases/)!
 
 ### How to use?
 * Ensure that your Chrome installed matches the Chromedriver version.
+* Ensure that your [region format](https://www.howto-connect.com/change-regional-format-windows-10/) is on `English (Singapore)`. 
 * Once downloaded, extract the `.zip` to a folder, and run `TimetableGrabber - SIT (V?.?.?).exe`.
 * Fill up the details and run the program.
 * Once the program has finished, you should see a `.ics` file appear in the same folder.
@@ -32,13 +42,13 @@ TimetableGrabber - SIT is a tool that allows you to grab and export your trimest
   </tr>
   <tr>
     <td>
-      <img src="https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/master/Picture1.png/" width="100%" height="500"/>
+      <img src="https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/master/screenshots/UserInterface.png/" width="270" height="480"/>
     </td>
     <td>
-      <img src="https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/master/Picture2.png/" width="100%" height="500"/>
+      <img src="https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/master/screenshots/iOS.png/" width="270" height="480"/>
     </td>
     <td>
-      <img src="https://github.com/JustBrandonLim/TimetableGrabber-SIT/blob/master/Picture3.png" width="100%" height="500"/>
+      <img src="https://github.com/JustBrandonLim/TimetableGrabber-SIT/blob/master/screenshots/Android.png" width="270" height="480"/>
     </td>
   </tr>
 </table>
@@ -52,9 +62,13 @@ TimetableGrabber - SIT is a tool that allows you to grab and export your trimest
 * Tennyson Koh - $0.99 SGD
 
 ### Issues
-* There are no known issues as of 18/01/2022.
-* TimetableGrabber - SIT might still require more testing.
+* TimetableGrabber - SIT might have hidden bugs!
 * If there are issues, please submit an issue [here](https://github.com/JustBrandonLim/TimetableGrabber-SIT/issues/)!
+
+### Testers
+* [@ministic2001](https://github.com/ministic2001/)
+* [@Medioec](https://github.com/Medioec/)
+* [@S0meDev99](https://github.com/S0meDev99/)
 
 ### Credits
 * [Selenium](https://www.selenium.dev/)
@@ -62,11 +76,6 @@ TimetableGrabber - SIT is a tool that allows you to grab and export your trimest
 * [Html Agility Pack](https://html-agility-pack.net/)
 * [ical.NET](https://github.com/rianjs/ical.net/)
 * [Icons8](https://icons8.com/)
-
-### Testers
-* [@ministic2001](https://github.com/ministic2001/)
-* [@Medioec](https://github.com/Medioec/)
-* [@S0meDev99](https://github.com/S0meDev99/)
 
 ### Licensing
 * Copyright 2022 [@JustBrandonLim](https://JustBrandonLim.github.io/)
