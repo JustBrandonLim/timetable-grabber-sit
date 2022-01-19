@@ -2,6 +2,14 @@
 
 TimetableGrabber - SIT is a tool that allows you to grab and export your trimester's timetable to the `.ics` format where you can import it to your favourite calendar.
 
+
+![GitHub all releases](https://img.shields.io/github/downloads/JustBrandonLim/TimetableGrabber-SIT/total)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/JustBrandonLim/TimetableGrabber-SIT)
+![GitHub last commit](https://img.shields.io/github/last-commit/JustBrandonLim/TimetableGrabber-SIT)
+![GitHub Repo stars](https://img.shields.io/github/stars/JustBrandonLim/TimetableGrabber-SIT?style=social)
+![GitHub](https://img.shields.io/github/license/JustBrandonLim/TimetableGrabber-SIT)
+![GitHub issues](https://img.shields.io/github/issues/JustBrandonLim/TimetableGrabber-SIT)
+
 ### Why TimetableGrabber - SIT?
 
 * SIT's website does not offer exporting of weekly schedule.
