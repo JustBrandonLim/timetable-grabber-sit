@@ -23,8 +23,7 @@ TimetableGrabber - SIT is a tool that allows you to grab and export your trimest
 * [Chromedriver](https://chromedriver.chromium.org/downloads/)
 
 ### Releases
-* ![GitHub all releases](https://img.shields.io/github/downloads/JustBrandonLim/TimetableGrabber-SIT/total?color=blue&label=Total%20Downloads)
-* Get the latest release [here](https://github.com/JustBrandonLim/TimetableGrabber---SIT/releases/)!
+* Get the latest releases [here](https://github.com/JustBrandonLim/TimetableGrabber---SIT/releases/)!
 
 ### How to use?
 * Ensure that your Chrome installed matches the Chromedriver version.
@@ -55,11 +54,6 @@ TimetableGrabber - SIT is a tool that allows you to grab and export your trimest
 
 ### Donations
 * You can buy me a coffee [here](https://ko-fi.com/justbrandonlim/)!
-* Tan Chun Guan - $10.00 USD
-* Keh Shao Xuan - $9.00 USD
-* Ng Chew Hui - $5.00 USD
-* Caleb Tam - $3.00 USD
-* Tennyson Koh - $0.99 SGD
 
 ### Issues
 * TimetableGrabber - SIT might have hidden bugs!
@@ -74,6 +68,7 @@ TimetableGrabber - SIT is a tool that allows you to grab and export your trimest
 * [Selenium](https://www.selenium.dev/)
 * [Chromedriver](https://chromedriver.chromium.org/downloads/)
 * [Html Agility Pack](https://html-agility-pack.net/)
+* [Json.NET](https://www.newtonsoft.com/json/)
 * [ical.NET](https://github.com/rianjs/ical.net/)
 * [Icons8](https://icons8.com/)
 
