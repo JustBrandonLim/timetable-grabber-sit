@@ -24,16 +24,24 @@ TimetableGrabber - SIT is a tool that allows you to grab and export your trimest
 * Once the program has finished, you should see a `.ics` file appear in the same folder.
 
 ### Screenshots
-###### UI
-<img src="https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/master/Picture1.png/" width="500" height="500"/>
-<img src="https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/master/Picture2.png/" width="500" height="500"/>
-
-###### Exported to iOS
-<img src="https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/master/Picture3.png/" width="500" height="500"/>
-<img src="https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/master/Picture4.png/" width="500" height="500"/>
-
-###### Exported to Android
-<img src="https://github.com/JustBrandonLim/TimetableGrabber-SIT/blob/master/PIcture5.png" width="500" height="500"/>
+<table>
+  <tr>
+    <td>User Interface</td>
+    <td>iOS</td>
+    <td>Android</td>
+  </tr>
+  <tr>
+    <td>
+      <img src="https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/master/Picture1.png/" width="100%" height="500"/>
+    </td>
+    <td>
+      <img src="https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/master/Picture2.png/" width="100%" height="500"/>
+    </td>
+    <td>
+      <img src="https://github.com/JustBrandonLim/TimetableGrabber-SIT/blob/master/Picture3.png" width="100%" height="500"/>
+    </td>
+  </tr>
+</table>
 
 ### Donations
 * You can buy me a coffee [here](https://ko-fi.com/justbrandonlim/)!
