@@ -37,6 +37,7 @@ TimetableGrabber - SIT is a tool that allows you to grab and export your trimest
 
 ### Donations
 * You can buy me a coffee [here](https://ko-fi.com/justbrandonlim/)!
+* ninja - $10.00 USD
 * [@ministic2001](https://github.com/ministic2001/) - $9.00 USD
 * Chew Hui - $5.00 USD
 * Caleb - $3.00 USD
