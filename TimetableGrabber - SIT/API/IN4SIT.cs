@@ -42,8 +42,10 @@ namespace TimetableGrabber___SIT.API
                 chromeDriverService.HideCommandPromptWindow = true;
 
                 ChromeOptions chromeOptions = new ChromeOptions();
+                //chromeOptions.BinaryLocation = string.Format("{0}/GoogleChromePortableDev/GoogleChromePortable.exe", AppDomain.CurrentDomain.BaseDirectory);
                 chromeOptions.AddArgument("headless");
                 chromeOptions.AddArgument("--window-size=1920,1080");
+                chromeOptions.AddArgument("--disable-extensions");
 
                 webDriverInstance = new ChromeDriver(chromeDriverService, chromeOptions);
 
@@ -122,7 +124,6 @@ namespace TimetableGrabber___SIT.API
 
                 await mainWindow.Log("Clicking \"Weekly Schedule\"...");
                 IWebElement weeklySchedule = webDriverInstance.FindElement(By.CssSelector(@"#PTGP_STEP_DVW_PTGP_STEP_LABEL\$1"));
-                //IWebElement weeklySchedule = webDriverInstance.FindElement(By.XPath("//div[contains(@href, 'https://in4sit.singaporetech.edu.sg/psc/CSSISSTD_newwin/EMPLOYEE/SA/c/SA_LEARNER_SERVICES.SSR_SSENRL_SCHD_W.GBL')]"));
                 weeklySchedule.Click();
                 await mainWindow.Log("Clicked \"Weekly Schedule\"...");
 
@@ -137,6 +138,24 @@ namespace TimetableGrabber___SIT.API
                 IWebElement listViewRadioButton = webDriverInstance.FindElement(By.CssSelector(@"#DERIVED_REGFRM1_SSR_SCHED_FORMAT\$258\$"));
                 listViewRadioButton.Click();
                 await mainWindow.Log("Clicked \"List View\"...");
+
+                await mainWindow.Log("Waiting...");
+                await Task.Delay(5000);
+
+                await mainWindow.Log("Unchecking \"Show Dropped Classes\"...");
+                IWebElement showDroppedClassesCheckBox = webDriverInstance.FindElement(By.CssSelector("#DERIVED_REGFRM1_SA_STUDYLIST_D"));
+                showDroppedClassesCheckBox.Click();
+                await mainWindow.Log("Unchecked \"Show Dropped Classes\"...");
+
+                await mainWindow.Log("Unchecking \"Show Waitlisted Classes\"...");
+                IWebElement showWaitlistedClassesCheckBox = webDriverInstance.FindElement(By.CssSelector("#DERIVED_REGFRM1_SA_STUDYLIST_W"));
+                showWaitlistedClassesCheckBox.Click();
+                await mainWindow.Log("Unchecked \"Show Waitlisted Classes\"...");
+
+                await mainWindow.Log("Clicking \"Filter\"...");
+                IWebElement filterButton = webDriverInstance.FindElement(By.CssSelector(@"#DERIVED_REGFRM1_SA_STUDYLIST_SHOW\$14\$"));
+                filterButton.Click();
+                await mainWindow.Log("Clicked \"Filter\"...");
 
                 await mainWindow.Log("Waiting...");
                 await Task.Delay(5000);
@@ -190,8 +209,8 @@ namespace TimetableGrabber___SIT.API
                             Regex timeRegex = new Regex(@".. ([0-9]+:[0-9]{2}[A-Z]*) - ([0-9]+:[0-9]{2}[A-Z]*)", RegexOptions.Singleline);
                             Match timeRegexMatch = timeRegex.Match(rawTime);
 
-                            string formattedStartDateTime = String.Format("{0} {1}:00", dateRegexMatch.Groups[1], timeRegexMatch.Groups[1]);
-                            string formattedEndDateTime = String.Format("{0} {1}:00", dateRegexMatch.Groups[2], timeRegexMatch.Groups[2]);
+                            string formattedStartDateTime = string.Format("{0} {1}:00", dateRegexMatch.Groups[1], timeRegexMatch.Groups[1]);
+                            string formattedEndDateTime = string.Format("{0} {1}:00", dateRegexMatch.Groups[2], timeRegexMatch.Groups[2]);
 
                             DateTime startDateTime = DateTime.Now, endDateTime = DateTime.Now;
                             string[] dateTimeFormatStrings = new string[] { "dd/MM/yyyy HH:mm:ss", "dd/MM/yyyy hh:mm:ss" };

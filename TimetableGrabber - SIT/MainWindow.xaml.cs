@@ -36,6 +36,8 @@ namespace TimetableGrabber___SIT
             string password = PasswordBoxPassword.Password;
 
             ButtonStart.IsEnabled = false;
+            TextBoxUsername.IsEnabled = false;
+            PasswordBoxPassword.IsEnabled = false;
 
             if (String.IsNullOrWhiteSpace(username) || String.IsNullOrWhiteSpace(password))
                 MessageBox.Show("Please enter your username or password!", "TimetableGrabber - SIT", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -54,13 +56,15 @@ namespace TimetableGrabber___SIT
             }
 
             ButtonStart.IsEnabled = true;
+            TextBoxUsername.IsEnabled = true;
+            PasswordBoxPassword.IsEnabled = true;
         }
 
         public async Task Log(string logMessage)
         {
             await TextBoxLogs.Dispatcher.BeginInvoke(new Action(() =>
             {
-                TextBoxLogs.AppendText(String.Format("[{0}]: {1}\n", DateTime.Now.ToShortTimeString(), logMessage));
+                TextBoxLogs.AppendText(string.Format("[{0}]: {1}\n", DateTime.Now.ToShortTimeString(), logMessage));
                 TextBoxLogs.ScrollToEnd();
             }));
         }
