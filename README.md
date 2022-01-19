@@ -28,6 +28,7 @@ TimetableGrabber - SIT is a tool that allows you to grab and export your trimest
 
 ### How to use?
 * Ensure that your Chrome installed matches the Chromedriver version.
+* Ensure that your [region format](https://www.howto-connect.com/change-regional-format-windows-10/) is on `English (Singapore)`. 
 * Once downloaded, extract the `.zip` to a folder, and run `TimetableGrabber - SIT (V?.?.?).exe`.
 * Fill up the details and run the program.
 * Once the program has finished, you should see a `.ics` file appear in the same folder.
