@@ -51,8 +51,9 @@
   </tr>
 </table>
 
-### Donations
+### Support
 * You can buy me a coffee [here](https://ko-fi.com/justbrandonlim/)!
+* Alternatively, you can star the repository to show your support!
 
 ### Issues
 * TimetableGrabber - SIT might have hidden bugs!
