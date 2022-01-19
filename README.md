@@ -1,15 +1,24 @@
 # TimetableGrabber - SIT
+**TimetableGrabber - SIT** is a tool that allows you to grab and export your trimester's timetable to the `.ics` format where you can import it to your favourite calendar.
+
 ![GitHub all releases](https://img.shields.io/github/downloads/JustBrandonLim/TimetableGrabber-SIT/total)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/JustBrandonLim/TimetableGrabber-SIT)
 ![GitHub last commit](https://img.shields.io/github/last-commit/JustBrandonLim/TimetableGrabber-SIT)
 ![GitHub Repo stars](https://img.shields.io/github/stars/JustBrandonLim/TimetableGrabber-SIT?style=social)
 ![GitHub](https://img.shields.io/github/license/JustBrandonLim/TimetableGrabber-SIT)
 ![GitHub issues](https://img.shields.io/github/issues/JustBrandonLim/TimetableGrabber-SIT)
+[![Windows](https://svgshare.com/i/ZhY.svg)](https://svgshare.com/i/ZhY.svg)
 
-**TimetableGrabber - SIT** is a tool that allows you to grab and export your trimester's timetable to the `.ics` format where you can import it to your favourite calendar.
+[![forthebadge](https://forthebadge.com/images/badges/open-source.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/made-with-c-sharp.svg)](https://forthebadge.com)
+
+[![forthebadge](https://forthebadge.com/images/badges/makes-people-smile.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/fixed-bugs.svg)](https://forthebadge.com)
+
+[![forthebadge](https://forthebadge.com/images/badges/uses-git.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/uses-badges.svg)](https://forthebadge.com)
 
 ### Why TimetableGrabber - SIT?
-
 * SIT's website does not offer exporting of weekly schedule.
 * **TimetableGrabber - SIT** is very simple and easy to use.
 * **TimetableGrabber - SIT** is open sourced.
