@@ -32,13 +32,13 @@ TimetableGrabber - SIT is a tool that allows you to grab and export your trimest
   </tr>
   <tr>
     <td>
-      <img src="https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/master/screenshots/UserInterface.png/" width="100%" height="500"/>
+      <img src="https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/master/screenshots/UserInterface.png/" width="270" height="480"/>
     </td>
     <td>
-      <img src="https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/master/screenshots/iOS.png/" width="100%" height="500"/>
+      <img src="https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/master/screenshots/iOS.png/" width="270" height="480"/>
     </td>
     <td>
-      <img src="https://github.com/JustBrandonLim/TimetableGrabber-SIT/blob/master/screenshots/Android.png" width="100%" height="500"/>
+      <img src="https://github.com/JustBrandonLim/TimetableGrabber-SIT/blob/master/screenshots/Android.png" width="270" height="480"/>
     </td>
   </tr>
 </table>
