@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TimetableGrabber___SIT"
         mc:Ignorable="d"
-        Title="TimetableGrabber - SIT (V1.2.2)"
+        Title="TimetableGrabber - SIT (V?.?.?)"
         Height="450"
         Width="400"
         MinHeight="450"
         MinWidth="400"
         ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen"
-        Icon="TimetableGrabber - SIT.png">
+        Icon="TimetableGrabber - SIT.png" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>

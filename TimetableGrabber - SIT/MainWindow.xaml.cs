@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -22,11 +25,33 @@ namespace TimetableGrabber___SIT
     /// </summary>
     public partial class MainWindow : Window
     {
+        private const string LOCAL_VERSION = "V1.3.0";
         private IN4SIT in4sit;
 
         public MainWindow()
         {
             InitializeComponent();
+
+            Title = string.Format("TimetableGrabber - SIT ({0})", LOCAL_VERSION);
+        }
+
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            using (HttpClient httpClient = new HttpClient())
+            {
+                httpClient.DefaultRequestHeaders.Add("User-Agent", "TimetableGrabber - SIT");
+
+                string responseString = await httpClient.GetStringAsync("https://api.github.com/repos/justbrandonlim/timetablegrabber-sit/releases");
+
+                JArray jsonArray = (JArray)JsonConvert.DeserializeObject(responseString);
+                if (jsonArray[0]["tag_name"].ToString() != LOCAL_VERSION)
+                {
+                    MessageBox.Show("There is a new update available!", "TimetableGrabber - SIT", MessageBoxButton.OK);
+                    Process.Start(jsonArray[0]["html_url"].ToString());
+                    Close();
+                }
+            }
+
             in4sit = new IN4SIT(this);
         }
 
@@ -48,7 +73,7 @@ namespace TimetableGrabber___SIT
                     bool succeeded = await Task.Run(() => in4sit.Start(username, password));
                     if (succeeded)
                     {
-                        MessageBox.Show("Your timetable has been exported!", "TimetableGrabber - SIT", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Done!", "TimetableGrabber - SIT", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                     else
                         MessageBox.Show("Something went wrong!", "TimetableGrabber - SIT", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -64,7 +89,7 @@ namespace TimetableGrabber___SIT
         {
             await TextBoxLogs.Dispatcher.BeginInvoke(new Action(() =>
             {
-                TextBoxLogs.AppendText(string.Format("[{0}]: {1}\n", DateTime.Now.ToShortTimeString(), logMessage));
+                TextBoxLogs.AppendText(string.Format("[{0}]: {1}{2}", DateTime.Now.ToShortTimeString(), logMessage, Environment.NewLine));
                 TextBoxLogs.ScrollToEnd();
             }));
         }

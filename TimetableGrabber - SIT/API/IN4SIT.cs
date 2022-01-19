@@ -16,6 +16,7 @@ using Ical.Net.Serialization;
 using System.IO;
 using System.Windows;
 using HtmlAgilityPack;
+using Microsoft.Win32;
 
 namespace TimetableGrabber___SIT.API
 {
@@ -42,13 +43,11 @@ namespace TimetableGrabber___SIT.API
                 chromeDriverService.HideCommandPromptWindow = true;
 
                 ChromeOptions chromeOptions = new ChromeOptions();
-                //chromeOptions.BinaryLocation = string.Format("{0}/GoogleChromePortableDev/GoogleChromePortable.exe", AppDomain.CurrentDomain.BaseDirectory);
                 chromeOptions.AddArgument("headless");
                 chromeOptions.AddArgument("--window-size=1920,1080");
                 chromeOptions.AddArgument("--disable-extensions");
 
                 webDriverInstance = new ChromeDriver(chromeDriverService, chromeOptions);
-
                 webDriverInstance.Manage().Window.Maximize();
 
                 webDriverInstance.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
@@ -214,14 +213,14 @@ namespace TimetableGrabber___SIT.API
 
                             DateTime startDateTime = DateTime.Now, endDateTime = DateTime.Now;
                             string[] dateTimeFormatStrings = new string[] { "dd/MM/yyyy HH:mm:ss", "dd/MM/yyyy hh:mm:ss" };
-                            if (!DateTime.TryParseExact(formattedStartDateTime, dateTimeFormatStrings, CultureInfo.InvariantCulture, DateTimeStyles.None, out startDateTime))
+                            if (!DateTime.TryParseExact(formattedStartDateTime, dateTimeFormatStrings, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out startDateTime))
                             {
-                                throw new Exception();
+                                await mainWindow.Log("Please change your Window's regional format to English (Singapore)!");
                             }
 
-                            if (!DateTime.TryParseExact(formattedEndDateTime, dateTimeFormatStrings, CultureInfo.InvariantCulture, DateTimeStyles.None, out endDateTime))
+                            if (!DateTime.TryParseExact(formattedEndDateTime, dateTimeFormatStrings, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out endDateTime))
                             {
-                                throw new Exception();
+                                await mainWindow.Log("Please change your Window's regional format to English (Singapore)!");
                             }
 
                             timetable.Add(new Course(name, section, component, startDateTime, endDateTime, location));
@@ -257,9 +256,22 @@ namespace TimetableGrabber___SIT.API
 
                 string fileName = string.Format("{0}_timetable.ics", DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss"));
 
-                File.WriteAllText(string.Format("{0}/{1}", AppDomain.CurrentDomain.BaseDirectory, fileName), serializedCalendar); ;
+                SaveFileDialog saveFileDialog = new SaveFileDialog
+                {
+                    Title = "TimetableGrabber - SIT",
+                    Filter = "Calendar File|*.ics",
+                    FileName = fileName
+                };
 
-                await mainWindow.Log(string.Format("Exported schedule as {0}...", fileName));
+                bool? saveFile = saveFileDialog.ShowDialog();
+                if (!string.IsNullOrWhiteSpace(saveFileDialog.FileName) && (bool)saveFile)
+                {
+                    File.WriteAllText(saveFileDialog.FileName, serializedCalendar);
+
+                    await mainWindow.Log(string.Format("Exported schedule to {0}...", saveFileDialog.FileName));
+                }
+                else
+                    await mainWindow.Log("Schedule was not exported...");
                 #endregion
 
                 await mainWindow.SetStatus("Done...");
