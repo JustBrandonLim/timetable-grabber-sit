@@ -56,17 +56,17 @@ TimetableGrabber - SIT is a tool that allows you to grab and export your trimest
 * TimetableGrabber - SIT might still require more testing.
 * If there are issues, please submit an issue [here](https://github.com/JustBrandonLim/TimetableGrabber-SIT/issues/)!
 
+### Testers
+* [@ministic2001](https://github.com/ministic2001/)
+* [@Medioec](https://github.com/Medioec/)
+* [@S0meDev99](https://github.com/S0meDev99/)
+
 ### Credits
 * [Selenium](https://www.selenium.dev/)
 * [Chromedriver](https://chromedriver.chromium.org/downloads/)
 * [Html Agility Pack](https://html-agility-pack.net/)
 * [ical.NET](https://github.com/rianjs/ical.net/)
 * [Icons8](https://icons8.com/)
-
-### Testers
-* [@ministic2001](https://github.com/ministic2001/)
-* [@Medioec](https://github.com/Medioec/)
-* [@S0meDev99](https://github.com/S0meDev99/)
 
 ### Licensing
 * Copyright 2022 [@JustBrandonLim](https://JustBrandonLim.github.io/)
