@@ -50,6 +50,7 @@ TimetableGrabber - SIT is a tool that allows you to grab and export your trimest
 
 ### Credits
 * [Selenium](https://www.selenium.dev/)
+* [Chromedriver](https://chromedriver.chromium.org/downloads/)
 * [Html Agility Pack](https://html-agility-pack.net/)
 * [ical.NET](https://github.com/rianjs/ical.net/)
 * [Icons8](https://icons8.com/)
