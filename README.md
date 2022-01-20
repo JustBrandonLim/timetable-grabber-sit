@@ -16,21 +16,6 @@
 * **TimetableGrabber - SIT** is open sourced.
 * The `.ics` format works across all calendar applications from mobile to desktop.
 
-## Requirements
-* [.NET Framework 4.8](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48/)
-* [Google Chrome](https://www.google.com/intl/en_sg/chrome/)
-* [Chromedriver](https://chromedriver.chromium.org/downloads/)
-
-## Releases
-* Get the latest releases [here](https://github.com/JustBrandonLim/TimetableGrabber---SIT/releases/)!
-
-## Usage
-* **Ensure that your Chrome installed matches the Chromedriver version.**
-* **Ensure that your [region format](https://www.howto-connect.com/change-regional-format-windows-10/) is on `English (Singapore)`.**
-* Once downloaded, extract the `.zip` to a folder, and run `TimetableGrabber - SIT (V?.?.?).exe`.
-* Fill up the details and run the program.
-* Once the program has finished, you should see a `.ics` file appear in the same folder.
-
 ## Screenshots
 <table>
   <tr>
@@ -50,6 +35,21 @@
     </td>
   </tr>
 </table>
+
+## Requirements
+* [.NET Framework 4.8](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48/)
+* [Google Chrome](https://www.google.com/intl/en_sg/chrome/)
+* [Chromedriver](https://chromedriver.chromium.org/downloads/)
+
+## Releases
+* Get the latest releases [here](https://github.com/JustBrandonLim/TimetableGrabber---SIT/releases/)!
+
+## Usage
+* **Ensure that your Chrome installed matches the Chromedriver version.**
+* **Ensure that your [region format](https://www.howto-connect.com/change-regional-format-windows-10/) is on `English (Singapore)`.**
+* Once downloaded, extract the `.zip` to a folder, and run `TimetableGrabber - SIT (V?.?.?).exe`.
+* Fill up the details and run the program.
+* Once the program has finished, you should see a `.ics` file appear in the same folder.
 
 ## Support
 * You can buy me a coffee [here](https://ko-fi.com/justbrandonlim/)!
