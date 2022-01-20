@@ -25,13 +25,13 @@
   </tr>
   <tr>
     <td>
-      <img src="https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/master/screenshots/UserInterface.png/" width="270" height="480"/>
+      <img src="https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/main/screenshots/UserInterface.png/" width="270" height="480"/>
     </td>
     <td>
-      <img src="https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/master/screenshots/iOS.png/" width="270" height="480"/>
+      <img src="https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/main/screenshots/iOS.png/" width="270" height="480"/>
     </td>
     <td>
-      <img src="https://github.com/JustBrandonLim/TimetableGrabber-SIT/blob/master/screenshots/Android.png" width="270" height="480"/>
+      <img src="https://github.com/JustBrandonLim/TimetableGrabber-SIT/blob/main/screenshots/Android.png" width="270" height="480"/>
     </td>
   </tr>
 </table>
