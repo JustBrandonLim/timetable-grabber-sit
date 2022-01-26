@@ -141,6 +141,19 @@ namespace TimetableGrabber___SIT.API
                 await mainWindow.Log("Waiting...");
                 await Task.Delay(5000);
 
+                await mainWindow.Log("Clicking \"Current Term\"");
+                IWebElement currentTermRadioButton = webDriverInstance.FindElement(By.CssSelector(@"#SSR_DUMMY_RECV1\$sels\$0\$\$0"));
+                currentTermRadioButton.Click();
+                await mainWindow.Log("Clicked \"Current Term\"");
+
+                await mainWindow.Log("Clicking \"Continue\"");
+                IWebElement continueButton = webDriverInstance.FindElement(By.XPath("//a[contains(@class, 'PSPUSHBUTTON Left')]"));
+                continueButton.Click();
+                await mainWindow.Log("Clicked \"Continue\"");
+
+                await mainWindow.Log("Waiting...");
+                await Task.Delay(5000);
+
                 await mainWindow.Log("Unchecking \"Show Dropped Classes\"...");
                 IWebElement showDroppedClassesCheckBox = webDriverInstance.FindElement(By.CssSelector("#DERIVED_REGFRM1_SA_STUDYLIST_D"));
                 showDroppedClassesCheckBox.Click();

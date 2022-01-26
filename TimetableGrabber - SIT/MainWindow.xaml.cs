@@ -25,7 +25,7 @@ namespace TimetableGrabber___SIT
     /// </summary>
     public partial class MainWindow : Window
     {
-        private const string LOCAL_VERSION = "V1.3.0";
+        private const string LOCAL_VERSION = "V1.3.1";
         private IN4SIT in4sit;
 
         public MainWindow()
