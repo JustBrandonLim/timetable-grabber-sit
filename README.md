@@ -12,8 +12,8 @@
 
 ## Why Timetable Grabber - SIT?
 * SIT's website does not offer exporting of weekly schedule.
-* **TimetableGrabber - SIT** is very simple and easy to use.
-* **TimetableGrabber - SIT** is open sourced.
+* **Timetable Grabber - SIT** is very simple and easy to use.
+* **Timetable Grabber - SIT** is open sourced.
 * The `.ics` format works across all calendar applications from mobile to desktop.
 
 ## Screenshots
