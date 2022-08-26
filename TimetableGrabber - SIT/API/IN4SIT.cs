@@ -43,7 +43,7 @@ namespace TimetableGrabber___SIT.API
                 chromeDriverService.HideCommandPromptWindow = true;
 
                 ChromeOptions chromeOptions = new ChromeOptions();
-                chromeOptions.AddArgument("headless");
+                //chromeOptions.AddArgument("headless");
                 chromeOptions.AddArgument("--window-size=1920,1080");
                 chromeOptions.AddArgument("--disable-extensions");
 
@@ -140,6 +140,32 @@ namespace TimetableGrabber___SIT.API
 
                 await mainWindow.Log("Waiting...");
                 await Task.Delay(5000);
+
+                // Term Selector if prompted
+                try
+                {
+                    IWebElement termSelectorText = webDriverInstance.FindElement(By.CssSelector(@"#win0divSSR_DUMMY_RECV1GP\$0"));
+                    
+                    string termText1 = webDriverInstance.FindElement(By.CssSelector(@"#TERM_CAR\$0")).Text;
+                    string termText2 = webDriverInstance.FindElement(By.CssSelector(@"#TERM_CAR\$1")).Text;
+
+
+                    await mainWindow.Log("Please select one of the option(s)...");
+                    string TermIdentifier = Application.Current.Dispatcher.Invoke(new Func<String>(() => { return mainWindow.OpenSelectionPrompt(termText1, termText2); }));
+                    IWebElement termViewRadioButton = webDriverInstance.FindElement(By.CssSelector(@"#SSR_DUMMY_RECV1\$sels\$" + TermIdentifier + @"\$\$0"));
+                    termViewRadioButton.Click();
+                    
+                    IWebElement termSubmitButton = webDriverInstance.FindElement(By.CssSelector("#DERIVED_SSS_SCT_SSR_PB_GO"));
+                    termSubmitButton.Click();
+
+                    await mainWindow.Log("Waiting...");
+                    await Task.Delay(5000);
+                }
+                catch (NoSuchElementException exc)
+                {
+                    await mainWindow.Log("No Term Selection found...");
+                    await mainWindow.Log(exc.Message);
+                }
 
                 await mainWindow.Log("Unchecking \"Show Dropped Classes\"...");
                 IWebElement showDroppedClassesCheckBox = webDriverInstance.FindElement(By.CssSelector("#DERIVED_REGFRM1_SA_STUDYLIST_D"));
