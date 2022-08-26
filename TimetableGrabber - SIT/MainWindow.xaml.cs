@@ -106,6 +106,8 @@ namespace TimetableGrabber___SIT
         public string OpenSelectionPrompt(params string[] text)
         {
             selectionWindow = new SelectionWindow(text);
+            selectionWindow.Owner = this;
+            selectionWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             selectionWindow.ShowDialog();
             return selectionWindow.IdIdentifier;
         }

@@ -43,7 +43,7 @@ namespace TimetableGrabber___SIT.API
                 chromeDriverService.HideCommandPromptWindow = true;
 
                 ChromeOptions chromeOptions = new ChromeOptions();
-                //chromeOptions.AddArgument("headless");
+                chromeOptions.AddArgument("headless");
                 chromeOptions.AddArgument("--window-size=1920,1080");
                 chromeOptions.AddArgument("--disable-extensions");
 
