@@ -27,6 +27,7 @@ namespace TimetableGrabber___SIT
     {
         private const string LOCAL_VERSION = "V1.3.2";
         private IN4SIT in4sit;
+        private SelectionWindow selectionWindow;
 
         public MainWindow()
         {
@@ -100,6 +101,15 @@ namespace TimetableGrabber___SIT
             {
                 LabelStatus.Content = status;
             }));
+        }
+
+        public string OpenSelectionPrompt(params string[] text)
+        {
+            selectionWindow = new SelectionWindow(text);
+            selectionWindow.Owner = this;
+            selectionWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            selectionWindow.ShowDialog();
+            return selectionWindow.IdIdentifier;
         }
     }
 }
