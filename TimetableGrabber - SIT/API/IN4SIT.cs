@@ -140,8 +140,9 @@ namespace TimetableGrabber___SIT.API
 
                 await mainWindow.Log("Waiting...");
                 await Task.Delay(5000);
+                #endregion
 
-                // Term Selector if prompted
+                #region TERM SELECTOR IF PROMPTED
                 try
                 {
                     IWebElement termSelectorText = webDriverInstance.FindElement(By.CssSelector(@"#win0divSSR_DUMMY_RECV1GP\$0"));
@@ -166,7 +167,9 @@ namespace TimetableGrabber___SIT.API
                     await mainWindow.Log("No Term Selection found...");
                     await mainWindow.Log(exc.Message);
                 }
+                #endregion
 
+                #region UNCHECKING FILTERS
                 await mainWindow.Log("Unchecking \"Show Dropped Classes\"...");
                 IWebElement showDroppedClassesCheckBox = webDriverInstance.FindElement(By.CssSelector("#DERIVED_REGFRM1_SA_STUDYLIST_D"));
                 showDroppedClassesCheckBox.Click();
@@ -306,6 +309,47 @@ namespace TimetableGrabber___SIT.API
             }
             catch (Exception ex)
             {
+                #region CHECK IF "LOGIN FAILURE"
+                try
+                {
+                    IWebElement loginError = webDriverInstance.FindElement(By.CssSelector("#errorText"));
+                    await mainWindow.Log("Error Output: " + loginError.Text);
+                    await CloseChromeInstance();
+                    return false;
+                }
+                catch (Exception exc)
+                {
+                    if (!(exc is NoSuchElementException))
+                    {
+                        await mainWindow.Log(exc.Message);
+                    }
+                }
+                #endregion
+
+                #region CHECK IF "NOT REGISTERED FOR ANY CLASS"
+                try
+                {
+                    IWebElement noClassRegisteredText = webDriverInstance.FindElement(By.CssSelector("#DERIVED_REGFRM1_SS_MESSAGE_LONG"));
+                    String noClassContent = noClassRegisteredText.Text;
+                    await CloseChromeInstance();
+                    if (String.Equals(noClassContent, "You are not registered for classes in this term."))
+                    {
+                        await mainWindow.Log("No registered classes found...");
+                        MessageBox.Show("No registered classes found!", "TimetableGrabber - SIT", MessageBoxButton.OK, MessageBoxImage.Information);
+                        return true;
+                    }
+                    await mainWindow.Log("Content Output: "+noClassContent);
+                    return false;
+                }
+                catch (Exception exc)
+                {
+                    if (!(exc is NoSuchElementException))
+                    {
+                        await mainWindow.Log(exc.Message);
+                    }
+                }
+                #endregion
+
                 await CloseChromeInstance();
                 await mainWindow.Log(ex.Message);
                 return false;
