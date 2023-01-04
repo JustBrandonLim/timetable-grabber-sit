@@ -1,6 +1,6 @@
-import { app, BrowserWindow, ipcMain, dialog } from "electron";
+import { app, BrowserWindow, ipcMain, dialog, shell } from "electron";
 import * as path from "path";
-import puppeteer, { ElementHandle } from "puppeteer";
+import puppeteer, { BrowserFetcher, ElementHandle } from "puppeteer-core";
 import * as ics from "ics";
 import * as fs from "fs";
 
@@ -15,7 +15,7 @@ function createMainWindow() {
     autoHideMenuBar: true,
     center: true,
     webPreferences: {
-      preload: path.join(__dirname, "../dist/index/index-preload.js"),
+      preload: path.join(__dirname, "../out/index/index-preload.js"),
     },
   });
 
@@ -23,9 +23,13 @@ function createMainWindow() {
 }
 
 async function grabTimetable(email: string, password: string) {
+  const browserFetcher = new BrowserFetcher({ path: path.join(__dirname, "../puppeteer") });
+  const revisionInfo = await browserFetcher.download("1069273");
+
   const browser = await puppeteer.launch({
+    executablePath: revisionInfo.executablePath,
     headless: true,
-    args: ["--start-maximized"],
+    args: ["--start-maximized", "--window-size=1920,1080"],
     defaultViewport: null,
   });
 
@@ -231,10 +235,11 @@ async function grabTimetable(email: string, password: string) {
           if (result.canceled == false) {
             try {
               fs.writeFileSync(result.filePath, value);
+              dialog.showMessageBox(mainWindow, { message: "Your timetable has been successfully grabbed!\nPlease consider donating!" });
             } catch (error) {
               dialog.showErrorBox("Timetable Grabber - SIT", "Something went wrong while saving your timetable!");
             }
-          } else dialog.showErrorBox("Timetable Grabber - SIT", "You cancelled the export of your timetable!");
+          } else dialog.showErrorBox("Timetable Grabber - SIT", "You cancelled the exporting of your timetable!");
         });
   } catch (error) {
     await page.screenshot({ fullPage: true, path: path.join(__dirname, "error.png") });
@@ -245,11 +250,14 @@ async function grabTimetable(email: string, password: string) {
 }
 
 app.whenReady().then(() => {
-  ipcMain.on("grab-timetable", async (_event, email: string, password: string) => {
-    await grabTimetable(email, password);
-  });
+  ipcMain.handle("grab-timetable", (_event, email: string, password: string) => grabTimetable(email, password));
 
   createMainWindow();
+
+  mainWindow.webContents.setWindowOpenHandler(({ url }) => {
+    shell.openExternal(url);
+    return { action: "deny" };
+  });
 
   app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) createMainWindow();

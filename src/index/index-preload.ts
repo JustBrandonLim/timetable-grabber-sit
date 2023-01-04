@@ -1,7 +1,5 @@
 import { contextBridge, ipcRenderer } from "electron";
 
-contextBridge.exposeInMainWorld("electron", {
-  grabTimetable: (email: string, password: string) => {
-    ipcRenderer.send("grab-timetable", email, password);
-  },
+contextBridge.exposeInMainWorld("electronAPI", {
+  grabTimetable: (email: string, password: string) => ipcRenderer.invoke("grab-timetable", email, password),
 });
