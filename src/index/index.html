@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../../dist/common/common.css" />
     <script src="../../dist/index/index.js" defer></script>
-    <title>TimetableGrabber - SIT</title>
+    <title>Timetable Grabber - SIT</title>
   </head>
   <body>
-    <main class="min-h-screen flex flex-col justify-between p-5">
+    <main class="flex flex-col justify-between min-h-screen p-5">
       <section class="flex flex-col gap-5">
         <input
-          class="outline-none border-2 border-sit-gray rounded-md p-2 focus:border-sit-black transition-colors duration-150 ease-in-out"
+          class="p-2 transition-colors duration-150 ease-in-out border-2 rounded-md outline-none border-sit-gray focus:border-sit-black"
           id="email"
           type="text"
           placeholder="Email"
@@ -20,7 +20,7 @@
         />
 
         <input
-          class="outline-none border-2 border-sit-gray rounded-md p-2 focus:border-sit-black transition-colors duration-150 ease-in-out"
+          class="p-2 transition-colors duration-150 ease-in-out border-2 rounded-md outline-none border-sit-gray focus:border-sit-black"
           id="password"
           type="password"
           placeholder="Password"
@@ -28,16 +28,17 @@
         />
 
         <button
-          class="bg-sit-red hover:bg-sit-red/70 text-white p-2 rounded-md w-1/2 transition-colors duration-150 ease-in-out"
+          class="w-1/2 p-2 text-white transition-colors duration-150 ease-in-out rounded-md select-none bg-sit-red hover:bg-sit-red/70"
           id="grab-timetable"
           type="button"
-          onclick=""
         >
           Grab Timetable
         </button>
+
+        <p class="hidden" id="message">An error has occurred!</p>
       </section>
-      <section>
-        <p>Made by <span class="text-sit-red font-bold">@JustBrandonLim</span>.</p>
+      <section class="select-none">
+        <p>Made by <span class="font-bold text-sit-red">@JustBrandonLim</span>.</p>
         <p>Version 2.0.0</p>
       </section>
     </main>

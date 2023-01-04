@@ -1,4 +1,4 @@
-document.getElementById("grab-timetable").addEventListener("click", function (): void {
+document.getElementById("grab-timetable").addEventListener("click", () => {
   const email = <HTMLInputElement>document.getElementById("email");
   const password = <HTMLInputElement>document.getElementById("password");
 
