@@ -12,6 +12,7 @@
     "start": "yarn tailwind && yarn lint && tsc && electron ."
   },
   "devDependencies": {
+    "@electron-forge/cli": "^6.0.4",
     "@typescript-eslint/eslint-plugin": "^5.44.0",
     "@typescript-eslint/parser": "^5.44.0",
     "electron": "^21.3.1",

@@ -1,7 +1,8 @@
-import { app, BrowserWindow, ipcMain } from "electron";
+import { app, BrowserWindow, ipcMain, dialog } from "electron";
 import * as path from "path";
 import puppeteer, { ElementHandle } from "puppeteer";
 import * as ics from "ics";
+import * as fs from "fs";
 
 let mainWindow: BrowserWindow = null;
 
@@ -23,7 +24,7 @@ function createMainWindow() {
 
 async function grabTimetable(email: string, password: string) {
   const browser = await puppeteer.launch({
-    headless: false,
+    headless: true,
     args: ["--start-maximized"],
     defaultViewport: null,
   });
@@ -32,7 +33,7 @@ async function grabTimetable(email: string, password: string) {
   const page = pages[0];
 
   try {
-    /*await page.goto("https://in4sit.singaporetech.edu.sg", { waitUntil: "networkidle0" });
+    await page.goto("https://in4sit.singaporetech.edu.sg", { waitUntil: "networkidle0" });
 
     const emailInput = await page.waitForSelector("#userNameInput", { visible: true });
     await emailInput.type(email);
@@ -56,6 +57,10 @@ async function grabTimetable(email: string, password: string) {
     const mainContentFrame = await page.waitForFrame(
       "https://in4sit.singaporetech.edu.sg/psc/CSSISSTD/EMPLOYEE/SA/c/SA_LEARNER_SERVICES.SSR_SSENRL_SCHD_W.GBL?&ICAGTarget=start&ICAJAXTrf=true"
     );
+
+    await new Promise(function (resolve) {
+      setTimeout(resolve, 3000);
+    });
 
     const listViewRadioButton = (await mainContentFrame.waitForSelector("xpath/" + '//label[text()="List View"]', {
       visible: true,
@@ -88,81 +93,155 @@ async function grabTimetable(email: string, password: string) {
 
     await mainContentFrame.waitForSelector("xpath/" + '//div[@id="WAIT_win0" and not(@class)]', { hidden: true });
 
-    const courses = await mainContentFrame.evaluate((courseSelector) => {
-      [...document.querySelectorAll(courseSelector)].slice(1).map((course) => {
-        const moduleName = course.querySelector('.PAGROUPDIVIDER[align="left"]').innerHTML;
+    const scrapedCourses: Course[] = await mainContentFrame.evaluate(() => {
+      const courses: Course[] = [];
 
-        const detailsRows = course.querySelectorAll('tr[valign="center"');
+      let name = "";
+      let group = "";
+      let type = "";
 
-        let currentSection: string, currentComponent: string;
-
-        const rowData = [...detailsRows].map((detailRow, index) => {
-          const detailsColumns = detailRow.querySelectorAll("td");
-
-          const section = detailsColumns[1].querySelector("div span");
-          if (section != null) currentSection = section.innerHTML;
-
-          const component = detailsColumns[2].querySelector("div span");
-          if (component.innerHTML.length > 1) currentComponent = component.innerHTML;
-
-          const location = detailsColumns[4].querySelector("div span").innerHTML;
-
-          const startDate = new Date(detailsColumns[6].querySelector("div span").innerHTML.split(" - ")[0]);
-
-          return { section: currentSection, component: currentComponent, location: location, startDate: startDate, duration: "" };
-        });
-
-        return rowData.map((data) => {
-          return {
-            title: `${moduleName} - ${data.section} - ${data.component}`,
-            location: data.location,
-            startDate: data.startDate,
-            duration: data.duration,
-          };
-        });
-      });
-    }, ".PABACKGROUNDINVISIBLEWBO");*/
-
-    await page.goto("file:///C:/Users/Brandon%20Lim/Desktop/printer%20friendly.html");
-
-    const courses = await page.evaluate(() => {
-      return Array.from(document.querySelectorAll(".PABACKGROUNDINVISIBLEWBO"))
+      Array.from(document.querySelectorAll(".PABACKGROUNDINVISIBLEWBO"))
         .slice(1)
-        .map((course) => {
-          const moduleCode = course.querySelector(".PAGROUPDIVIDER").innerHTML;
+        .forEach((course) => {
+          name = course.querySelector(".PAGROUPDIVIDER").innerHTML.replace("&amp;", "&");
 
-          //return Array.from(course.querySelectorAll('tr[valign="center"')).map((row) => {
-          return { title: moduleCode };
-          //});
+          Array.from(course.querySelectorAll('tr[valign="center"]'))
+            .slice(1)
+            .forEach((row) => {
+              const columns = row.querySelectorAll("td");
+
+              const groupElement = columns[1].querySelector("div span");
+              if (groupElement != null && groupElement.innerHTML != "&nbsp;") group = groupElement.innerHTML;
+
+              const typeElement = columns[2].querySelector("div span");
+              if (typeElement != null && typeElement.innerHTML != "&nbsp;") type = typeElement.innerHTML;
+
+              const timeElement = columns[3].querySelector("div span");
+              const timeRegexMatch = timeElement.innerHTML.match(".. ([0-9]+):([0-9]{2}) - ([0-9]+):([0-9]{2})");
+
+              const startHour = timeRegexMatch[1];
+              const startMinute = timeRegexMatch[2];
+
+              const startTime = `${startHour}:${startMinute}:00`;
+
+              const endHour = timeRegexMatch[3];
+              const endMinute = timeRegexMatch[4];
+
+              const endTime = `${endHour}:${endMinute}:00`;
+
+              /*const timeRegexMatch = timeElement.innerHTML.match(".. ([0-9]+):([0-9]{2})([A-Z]*) - ([0-9]+):([0-9]{2})([A-Z]*)");
+
+              let startHour = timeRegexMatch[1];
+              const startHourNumber = parseInt(startHour, 10);
+              const startHourIdentifier = timeRegexMatch[3];
+
+              if (startHourIdentifier == "PM") {
+                if (startHourNumber == 12) startHour = "12";
+                else startHour = (startHourNumber + 12).toString();
+              } else {
+                if (startHourNumber == 12) startHour = "00";
+                else if (startHourNumber < 10) startHour = "0" + startHour;
+              }
+
+              const startMinute = timeRegexMatch[2];
+              const startTime = `${startHour}:${startMinute}:00`;
+
+              let endHour = timeRegexMatch[4];
+              const endHourNumber = parseInt(endHour, 10);
+              const endHourIdentifier = timeRegexMatch[6];
+
+              if (endHourIdentifier == "PM") {
+                if (endHourNumber == 12) endHour = "12";
+                else endHour = (endHourNumber + 12).toString();
+              } else {
+                if (endHourNumber == 12) endHour = "00";
+                else if (endHourNumber < 10) endHour = "0" + endHour;
+              }
+
+              const endMinute = timeRegexMatch[5];
+              const endTime = `${endHour}:${endMinute}:00`;*/
+
+              const dateElement = columns[6].querySelector("div span");
+              const dateRegexMatch = dateElement.innerHTML.match("([0-9]{2})/([0-9]{2})/([0-9]{4}) - ([0-9]{2})/([0-9]{2})/([0-9]{4})");
+
+              const startYear = dateRegexMatch[3];
+              const startMonth = dateRegexMatch[2];
+              const startDay = dateRegexMatch[1];
+
+              const endYear = dateRegexMatch[6];
+              const endMonth = dateRegexMatch[5];
+              const endDay = dateRegexMatch[4];
+
+              const start = `${startYear}-${startMonth}-${startDay}T${startTime}`;
+
+              const end = `${endYear}-${endMonth}-${endDay}T${endTime}`;
+
+              const locationElement = columns[4].querySelector("div span");
+              const location = locationElement.innerHTML;
+
+              courses.push({
+                Name: name,
+                Group: group,
+                Type: type,
+                Start: start,
+                End: end,
+                Location: location,
+              });
+            });
         });
+
+      return courses;
     });
 
-    console.log(courses);
+    const events: ics.EventAttributes[] = scrapedCourses.map((scrapedCourse) => {
+      const startDateTime = new Date(scrapedCourse.Start);
+      const endDateTime = new Date(scrapedCourse.End);
 
-    //ics.createEvents();
+      return {
+        title: `${scrapedCourse.Name} - ${scrapedCourse.Group} - ${scrapedCourse.Type}`,
+        start: [
+          startDateTime.getFullYear(),
+          startDateTime.getMonth() + 1,
+          startDateTime.getDate(),
+          startDateTime.getHours(),
+          startDateTime.getMinutes(),
+        ],
+        end: [endDateTime.getFullYear(), endDateTime.getMonth() + 1, endDateTime.getDate(), endDateTime.getHours(), endDateTime.getMinutes()],
+        location: scrapedCourse.Location,
+      };
+    });
 
-    /*
-      start: [2018, 5, 30, 6, 30],
-      duration: { hours: 6, minutes: 30 },
-      title: 'Bolder Boulder',
-      description: 'Annual 10-kilometer run in Boulder, Colorado',
-      location: 'Folsom Field, University of Colorado (finish line)',
-     */
+    const { error, value } = ics.createEvents(events);
 
-    /*await new Promise(function (r) {
-      setTimeout(r, 5000);
-    });*/
+    if (error) dialog.showErrorBox("Timetable Grabber - SIT", "Something went wrong while generating the timetable!");
+    else
+      await dialog
+        .showSaveDialog(mainWindow, {
+          title: "Save Timetable",
+          nameFieldLabel: "timetable",
+          filters: [
+            {
+              name: "Calendar File",
+              extensions: ["ics"],
+            },
+          ],
+          buttonLabel: "Save Timetable",
+        })
+        .then((result) => {
+          if (result.canceled == false) {
+            try {
+              fs.writeFileSync(result.filePath, value);
+            } catch (error) {
+              dialog.showErrorBox("Timetable Grabber - SIT", "Something went wrong while saving your timetable!");
+            }
+          } else dialog.showErrorBox("Timetable Grabber - SIT", "You cancelled the export of your timetable!");
+        });
   } catch (error) {
-    console.log(error);
     await page.screenshot({ fullPage: true, path: path.join(__dirname, "error.png") });
+    dialog.showErrorBox("Timetable Grabber - SIT", "Something went wrong while navigating IN4SIT!");
   } finally {
     await browser.close();
   }
-
-  /*const saveFileDialog = await dialog.showSaveDialog(mainWindow, {
-    title: "Timetable Grabber - SIT",
-    defaultPath: path.join(__dirname, "timetable.ics"),
-  });*/
 }
 
 app.whenReady().then(() => {
