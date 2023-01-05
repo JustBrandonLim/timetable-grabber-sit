@@ -2,11 +2,11 @@
 
 **Timetable Grabber - SIT** is a tool that allows you to grab and export your trimester's timetable to the `.ics` format where you can import it to your favourite calendar.
 
-![GitHub all releases](https://img.shields.io/github/downloads/JustBrandonLim/TimetableGrabber-SIT/total)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/JustBrandonLim/TimetableGrabber-SIT)
-![GitHub last commit](https://img.shields.io/github/last-commit/JustBrandonLim/TimetableGrabber-SIT)
-![GitHub](https://img.shields.io/github/license/JustBrandonLim/TimetableGrabber-SIT)
-![GitHub issues](https://img.shields.io/github/issues/JustBrandonLim/TimetableGrabber-SIT)
+![GitHub all releases](https://img.shields.io/github/downloads/JustBrandonLim/timetable-grabber-sit/total)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/JustBrandonLim/timetable-grabber-sit)
+![GitHub last commit](https://img.shields.io/github/last-commit/JustBrandonLim/timetable-grabber-sit)
+![GitHub](https://img.shields.io/github/license/JustBrandonLim/timetable-grabber-sit)
+![GitHub issues](https://img.shields.io/github/issues/JustBrandonLim/timetable-grabber-sit)
 
 [![forthebadge](https://forthebadge.com/images/badges/open-source.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/made-with-c-sharp.svg)](https://forthebadge.com)
@@ -28,13 +28,13 @@
   </tr>
   <tr>
     <td>
-      <img src="https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/main/screenshots/UserInterface.png/" width="270" height="480"/>
+      <img src="https://github.com/JustBrandonLim/timetable-grabber-sit/blob/main/screenshots/UserInterface.png/" width="270" height="480"/>
     </td>
     <td>
-      <img src="https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/main/screenshots/iOS.png/" width="270" height="480"/>
+      <img src="https://github.com/JustBrandonLim/timetable-grabber-sit/blob/main/screenshots/iOS.png/" width="270" height="480"/>
     </td>
     <td>
-      <img src="https://github.com/JustBrandonLim/TimetableGrabber-SIT/blob/main/screenshots/Android.png" width="270" height="480"/>
+      <img src="https://github.com/JustBrandonLim/timetable-grabber-sit/blob/main/screenshots/Android.png" width="270" height="480"/>
     </td>
   </tr>
 </table>
@@ -45,7 +45,7 @@
 
 ## Releases
 
-- Get the latest releases [here](https://github.com/JustBrandonLim/TimetableGrabber---SIT/releases/)!
+- Get the latest releases [here](https://github.com/JustBrandonLim/timetable-grabber-sit/releases/)!
 
 ## Support
 
@@ -54,7 +54,7 @@
 
 ## Issues
 
-- If there are issues, please submit an issue [here](https://github.com/JustBrandonLim/TimetableGrabber-SIT/issues/)!
+- If there are issues, please submit an issue [here](https://github.com/JustBrandonLim/timetable-grabber-sit/issues)!
 
 ## Created With
 
@@ -65,4 +65,4 @@
 ## Copyright & License
 
 - Copyright 2022 [@JustBrandonLim](https://JustBrandonLim.github.io/)
-- Licensed under [MIT](https://github.com/JustBrandonLim/TimetableGrabber---SIT/blob/master/LICENSE.md/)
+- Licensed under [MIT](https://github.com/JustBrandonLim/timetable-grabber-sit/blob/master/LICENSE.md/)
