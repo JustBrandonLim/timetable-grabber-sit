@@ -15,6 +15,7 @@
     "@typescript-eslint/eslint-plugin": "^5.44.0",
     "@typescript-eslint/parser": "^5.44.0",
     "electron": "^21.3.1",
+    "electron-builder": "^23.6.0",
     "eslint": "^8.28.0",
     "tailwindcss": "^3.2.4",
     "typescript": "^4.9.3"
@@ -22,5 +23,10 @@
   "dependencies": {
     "ics": "^2.41.0",
     "puppeteer-core": "^19.4.1"
+  },
+  "build": {
+    "appId": "com.electron.timetablegrabber-sit",
+    "productName": "Timetable Grabber - SIT",
+    "asar": "false"
   }
 }
