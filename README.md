@@ -9,7 +9,7 @@
 ![GitHub issues](https://img.shields.io/github/issues/JustBrandonLim/timetable-grabber-sit)
 
 [![forthebadge](https://forthebadge.com/images/badges/open-source.svg)](https://forthebadge.com)
-[![forthebadge](https://forthebadge.com/images/badges/made-with-c-sharp.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
 
 ## Why Timetable Grabber - SIT?
 
