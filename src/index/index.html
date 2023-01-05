@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../out/common/common.css" />
+    <script src="../../out/index/index.js" defer></script>
+    <title>Timetable Grabber - SIT</title>
+  </head>
+  <body>
+    <main class="flex flex-col justify-between min-h-screen p-5">
+      <section class="flex flex-col gap-5">
+        <input
+          class="p-2 transition-colors duration-150 ease-in-out border-2 rounded-md outline-none border-sit-gray focus:border-sit-black disabled:hover:cursor-not-allowed"
+          id="email"
+          type="text"
+          placeholder="Email"
+          required
+        />
+
+        <input
+          class="p-2 transition-colors duration-150 ease-in-out border-2 rounded-md outline-none border-sit-gray focus:border-sit-black disabled:hover:cursor-not-allowed"
+          id="password"
+          type="password"
+          placeholder="Password"
+          required
+        />
+
+        <div class="flex flex-row items-center gap-5">
+          <button
+            class="p-2 text-white transition-colors duration-150 ease-in-out rounded-md select-none basis-1/2 bg-sit-red hover:bg-sit-red/70 disabled:bg-sit-gray disabled:hover:bg-site-gray disabled:hover:cursor-not-allowed"
+            id="grab-timetable"
+            aria-disabled="false"
+            type="button"
+          >
+            Grab Timetable
+          </button>
+
+          <a
+            class="p-2 text-center text-white transition-colors duration-150 ease-in-out rounded-md select-none basis-1/2 bg-sit-red hover:bg-sit-red/70"
+            href="https://ko-fi.com/justbrandonlim"
+            target="_blank"
+          >
+            Donate
+          </a>
+        </div>
+        <p id="message">Waiting...</p>
+      </section>
+      <section class="select-none">
+        <p>Made by <span class="font-bold text-sit-red">@JustBrandonLim</span>.</p>
+        <p>Version 2.0.0</p>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+{
+  "name": "timetable-grabber-sit",
+  "version": "2.0.0",
+  "description": "Timetable Grabber - SIT is a tool that allows you to grab and export your trimester's timetable to the .ics format where you can import it to your favourite calendar.",
+  "main": "./out/main.js",
+  "repository": "https://github.com/JustBrandonLim/timetable-grabber-sit.git",
+  "author": "Brandon Lim <brandonlimjingzhi@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "tailwind": "tailwindcss -i ./src/common/common.css -o ./out/common/common.css",
+    "lint": "eslint -c .eslintrc --ext .ts ./src",
+    "start": "yarn tailwind && yarn lint && tsc && electron ."
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.44.0",
+    "@typescript-eslint/parser": "^5.44.0",
+    "electron": "^21.3.1",
+    "electron-builder": "^23.6.0",
+    "eslint": "^8.28.0",
+    "tailwindcss": "^3.2.4",
+    "typescript": "^4.9.3"
+  },
+  "dependencies": {
+    "ics": "^2.41.0",
+    "puppeteer-core": "^19.4.1"
+  },
+  "build": {
+    "appId": "com.electron.timetablegrabber-sit",
+    "productName": "Timetable Grabber - SIT",
+    "asar": "false"
+  }
+}
