@@ -20,29 +20,17 @@
 
 ## Screenshots
 
-<table>
-  <tr>
-    <td>User Interface</td>
-    <td>iOS</td>
-    <td>Android</td>
-  </tr>
-  <tr>
-    <td>
-      <img src="https://github.com/JustBrandonLim/timetable-grabber-sit/blob/main/screenshots/UserInterface.png/" width="270" height="480"/>
-    </td>
-    <td>
-      <img src="https://github.com/JustBrandonLim/timetable-grabber-sit/blob/main/screenshots/iOS.png/" width="270" height="480"/>
-    </td>
-    <td>
-      <img src="https://github.com/JustBrandonLim/timetable-grabber-sit/blob/main/screenshots/Android.png" width="270" height="480"/>
-    </td>
-  </tr>
-</table>
+| First Header   | Second Header                                                                                                       |
+| -------------- | ------------------------------------------------------------------------------------------------------------------- |
+| User Interface | ![User Interface](https://github.com/JustBrandonLim/timetable-grabber-sit/blob/main/screenshots/UserInterface.png/) |
+| iOS            | ![iOS](https://github.com/JustBrandonLim/timetable-grabber-sit/blob/main/screenshots/iOS.png/)                      |
+| Android        | ![Android](https://github.com/JustBrandonLim/timetable-grabber-sit/blob/main/screenshots/Android.png)               |
 
 ## Requirements
 
 - Locale is set to SGT, GMT +8.
-- <img src="https://github.com/JustBrandonLim/timetable-grabber-sit/blob/main/screenshots/RegionalFormat.png/" width="270" height="480"/>
+
+![Regional Format](https://github.com/JustBrandonLim/timetable-grabber-sit/blob/main/screenshots/RegionalFormat.png)
 
 ## Releases
 
