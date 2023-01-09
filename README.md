@@ -42,6 +42,7 @@
 ## Requirements
 
 - Locale is set to SGT, GMT +8.
+- <img src="https://github.com/JustBrandonLim/timetable-grabber-sit/blob/main/screenshots/RegionalFormat.png/" width="270" height="480"/>
 
 ## Releases
 
