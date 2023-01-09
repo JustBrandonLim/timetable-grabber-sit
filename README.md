@@ -20,7 +20,7 @@
 
 ## Screenshots
 
-| First Header   | Second Header                                                                                                       |
+|                | Images                                                                                                              |
 | -------------- | ------------------------------------------------------------------------------------------------------------------- |
 | User Interface | ![User Interface](https://github.com/JustBrandonLim/timetable-grabber-sit/blob/main/screenshots/UserInterface.png/) |
 | iOS            | ![iOS](https://github.com/JustBrandonLim/timetable-grabber-sit/blob/main/screenshots/iOS.png/)                      |
