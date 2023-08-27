@@ -3,6 +3,22 @@ import * as path from "path";
 import puppeteer, { BrowserFetcher, ElementHandle } from "puppeteer-core";
 import * as ics from "ics";
 import * as fs from "fs";
+import WebSocket from 'ws';
+
+// Setup websocket for feedback on frontend.
+// const WebSocket = require('ws');
+const wss = new WebSocket.Server({ port: 8080 });
+
+wss.on('connection', (ws: WebSocket) => {
+  // Send data to the connected client
+  ws.send('Connected to WebSocket');
+  
+  // Replace this with your actual logging mechanism
+  console.log = (...args) => {
+    ws.send(JSON.stringify({ type: 'log', message: args.join(' ') }));
+  };
+});
+
 
 let mainWindow: BrowserWindow = null;
 
@@ -37,81 +53,131 @@ async function grabTimetable(email: string, password: string) {
   const page = pages[0];
 
   try {
-    await page.goto("https://in4sit.singaporetech.edu.sg", { waitUntil: "networkidle0" });
+    await page.goto("https://in4sit.singaporetech.edu.sg", { waitUntil: "networkidle0", timeout: 30000 });
+    console.log("Running... Page Loaded")
 
     const emailInput = await page.waitForSelector("#userNameInput", { visible: true });
     await emailInput.type(email);
+    console.log("Running... Email Inputed")
 
     const passwordInput = await page.waitForSelector("#passwordInput", { visible: true });
     await passwordInput.type(password);
+    console.log("Running... Password Inputed")
 
     const loginButton = await page.waitForSelector("#submitButton", { visible: true });
     await Promise.all([page.waitForNavigation({ waitUntil: "networkidle0" }), loginButton.click()]);
+    console.log("Running... Logged In")
 
-    const courseManagementLink = (await page.waitForXPath('//span[text()="Course Management"]', {
-      visible: true,
-    })) as ElementHandle<HTMLElement>;
-    await Promise.all([page.waitForNavigation({ waitUntil: "networkidle0" }), courseManagementLink.click()]);
+    // const courseManagementLink = (await page.waitForXPath('//span[text()="Course Management"]', {
+    //   visible: true,
+    // })) as ElementHandle<HTMLElement>;
+    // await Promise.all([page.waitForNavigation({ waitUntil: "networkidle0" }), courseManagementLink.click()]);
+    // console.log("Running... Navigated to Course Management")
 
-    const myWeeklyScheduleLink = (await page.waitForXPath('//span[text()="My Weekly Schedule"]', {
-      visible: true,
-    })) as ElementHandle<HTMLElement>;
-    await myWeeklyScheduleLink.click();
+    // const myWeeklyScheduleLink = (await page.waitForXPath('//span[text()="My Weekly Schedule"]', {
+    //   visible: true,
+    //   timeout: 60000
+    // })) as ElementHandle<HTMLElement>;
+    // console.log("Running... Found My Weekly Schedule.")
+    // await myWeeklyScheduleLink.click();
+    // console.log("Running... Clicked My Weekly Schedule")
 
-    const mainContentFrame = await page.waitForFrame(
-      "https://in4sit.singaporetech.edu.sg/psc/CSSISSTD/EMPLOYEE/SA/c/SA_LEARNER_SERVICES.SSR_SSENRL_SCHD_W.GBL?&ICAGTarget=start&ICAJAXTrf=true"
-    );
+    // // Get Content of Iframe
+    // const mainContentFrame = await page.waitForFrame(
+    //   "https://in4sit.singaporetech.edu.sg/psc/CSSISSTD/EMPLOYEE/SA/c/SA_LEARNER_SERVICES.SSR_SSENRL_SCHD_W.GBL?NavColl=true&ICAGTarget=start&ICAJAXTrf=true"
+    // );
+    // console.log("Running... Navigated to My Weekly Schedule")
 
     await new Promise(function (resolve) {
-      setTimeout(resolve, 3000);
+      setTimeout(resolve, 4000);
     });
+    
+    // Go to source of Iframe
+    await page.goto("https://in4sit.singaporetech.edu.sg/psc/CSSISSTD/EMPLOYEE/SA/c/SA_LEARNER_SERVICES.SSR_SSENRL_SCHD_W.GBL?NavColl=true&ICAGTarget=start&ICAJAXTrf=true")
+    await page.waitForSelector("xpath/" + '//div[@id="WAIT_win0" and not(@class)]', { hidden: true });
+    console.log("Running... Naviagated to source of URL")
 
-    const listViewRadioButton = (await mainContentFrame.waitForSelector("xpath/" + '//label[text()="List View"]', {
+    // Swap to list 
+    const listViewRadioButton = (await page.waitForSelector("xpath/" + '//label[text()="List View"]', {
       visible: true,
     })) as ElementHandle<HTMLElement>;
+    console.log("Running... Found List View Radio")
     await listViewRadioButton.click();
+    await page.waitForSelector("xpath/" + '//div[@id="WAIT_win0" and not(@class)]', { hidden: true });
+    console.log("Running... Clicked List View")
 
-    await mainContentFrame.waitForSelector("xpath/" + '//div[@id="WAIT_win0" and not(@class)]', { hidden: true });
-
-    const showDroppedClassesCheckBox = (await mainContentFrame.waitForSelector("xpath/" + '//label[text()="Show Dropped Classes"]', {
+    // Ensure all Filters are correct (remove dropped and waitlist)
+    const showDroppedClassesCheckBox = (await page.waitForSelector("xpath/" + '//label[text()="Show Dropped Classes"]', {
       visible: true,
     })) as ElementHandle<HTMLElement>;
     await showDroppedClassesCheckBox.click();
-
-    const showWaitlistedClassesCheckBox = (await mainContentFrame.waitForSelector("xpath/" + '//label[text()="Show Waitlisted Classes"]', {
+    console.log("Running... Unchecked Dropped Classes checkbox")
+    const showWaitlistedClassesCheckBox = (await page.waitForSelector("xpath/" + '//label[text()="Show Waitlisted Classes"]', {
       visible: true,
     })) as ElementHandle<HTMLElement>;
     await showWaitlistedClassesCheckBox.click();
-
-    const filterButton = (await mainContentFrame.waitForSelector("xpath/" + '//input[@value="Filter"]', {
+    console.log("Running... Unchecked Waitlisted Classes checkbox")
+    const filterButton = (await page.waitForSelector("xpath/" + '//input[@value="Filter"]', {
       visible: true,
     })) as ElementHandle<HTMLElement>;
     await filterButton.click();
+    await page.waitForSelector("xpath/" + '//div[@id="WAIT_win0" and not(@class)]', { hidden: true });
+    console.log("Running... Triggered Filter")
 
-    await mainContentFrame.waitForSelector("xpath/" + '//div[@id="WAIT_win0" and not(@class)]', { hidden: true });
-
-    const printerFriendlyPageLink = (await mainContentFrame.waitForSelector("xpath/" + '//a[text()="Printer Friendly Page"]', {
+    // Go to Printer Friendly Page
+    const printerFriendlyPageLink = (await page.waitForSelector("xpath/" + '//a[text()="Printer Friendly Page"]', {
       visible: true,
     })) as ElementHandle<HTMLElement>;
     await printerFriendlyPageLink.click();
+    await page.waitForSelector("xpath/" + '//div[@id="WAIT_win0" and not(@class)]', { hidden: true });
+    console.log("Running... Navigated to Printer Friendly Page")
 
-    await mainContentFrame.waitForSelector("xpath/" + '//div[@id="WAIT_win0" and not(@class)]', { hidden: true });
+    // Debugger setting to see console log items
+    page.on('console', async (message) => {
+      if (message.type() === 'log') {
+        const args = await Promise.all(message.args().map(arg => arg.jsonValue()));
+        console.log('Browser Console:', ...args);
+      }
+    });
+    
+    //Extract the courses
+    // Note: Evaluate cannot return complex objects. Testing extraction of courses
+    console.log("Running... Printer Page Scrap / eval starts")
+    const scrapedCourses: Course[] = await page.evaluate(() => {
+      // Helper function to convert time format
+      function convertTo24HourFormat(timeString: string): string {
+        const [time, ampm] = timeString.split(/(?<=[0-9])(?=[APMapm]+)/i);
+        const [hours, minutes] = time.split(':');
+        let hours24 = parseInt(hours);
 
-    const scrapedCourses: Course[] = await mainContentFrame.evaluate(() => {
+        if (ampm.toLowerCase() === 'pm' && hours24 !== 12) {
+          hours24 += 12;
+        } else if (ampm.toLowerCase() === 'am' && hours24 === 12) {
+          hours24 = 0;
+        }
+
+        return `${hours24.toString().padStart(2, '0')}:${minutes}`;
+      }
+
+      // Select all the table of classes
+      const elementHandlers = Array.from(document.querySelectorAll(".PABACKGROUNDINVISIBLEWBO")).slice(1)
+
+      // Declare var to be used 
       const courses: Course[] = [];
 
       let name = "";
       let group = "";
       let type = "";
 
-      Array.from(document.querySelectorAll(".PABACKGROUNDINVISIBLEWBO"))
-        .slice(1)
-        .forEach((course) => {
-          name = course.querySelector(".PAGROUPDIVIDER").innerHTML.replace("&amp;", "&");
+      // Extract relevant data from each table
+      elementHandlers.forEach((course) => {
+        // Extract the name of the module
+        name = course.querySelector(".PAGROUPDIVIDER").innerHTML.replace("&amp;", "&");
 
-          Array.from(course.querySelectorAll('tr[valign="center"]'))
-            .slice(1)
-            .forEach((row) => {
+        //Extract the classes of the module
+        Array.from(course.querySelectorAll('tr[valign="center"]'))
+            .slice(1) //Ignore header
+            .forEach((row) => {            
               const columns = row.querySelectorAll("td");
 
               const groupElement = columns[1].querySelector("div span");
@@ -121,52 +187,21 @@ async function grabTimetable(email: string, password: string) {
               if (typeElement != null && typeElement.innerHTML != "&nbsp;") type = typeElement.innerHTML;
 
               const timeElement = columns[3].querySelector("div span");
-              const timeRegexMatch = timeElement.innerHTML.match(".. ([0-9]+):([0-9]{2}) - ([0-9]+):([0-9]{2})");
+              const timeRegexMatch = timeElement.innerHTML.match(".. ([0-9]+:[0-9]{2}[APMapm]+) - ([0-9]+:[0-9]{2}[APMapm]+)");
 
-              const startHour = timeRegexMatch[1];
-              const startMinute = timeRegexMatch[2];
-
-              const startTime = `${startHour}:${startMinute}:00`;
-
-              const endHour = timeRegexMatch[3];
-              const endMinute = timeRegexMatch[4];
-
-              const endTime = `${endHour}:${endMinute}:00`;
-
-              /*const timeRegexMatch = timeElement.innerHTML.match(".. ([0-9]+):([0-9]{2})([A-Z]*) - ([0-9]+):([0-9]{2})([A-Z]*)");
-
-              let startHour = timeRegexMatch[1];
-              const startHourNumber = parseInt(startHour, 10);
-              const startHourIdentifier = timeRegexMatch[3];
-
-              if (startHourIdentifier == "PM") {
-                if (startHourNumber == 12) startHour = "12";
-                else startHour = (startHourNumber + 12).toString();
-              } else {
-                if (startHourNumber == 12) startHour = "00";
-                else if (startHourNumber < 10) startHour = "0" + startHour;
-              }
-
-              const startMinute = timeRegexMatch[2];
-              const startTime = `${startHour}:${startMinute}:00`;
-
-              let endHour = timeRegexMatch[4];
-              const endHourNumber = parseInt(endHour, 10);
-              const endHourIdentifier = timeRegexMatch[6];
-
-              if (endHourIdentifier == "PM") {
-                if (endHourNumber == 12) endHour = "12";
-                else endHour = (endHourNumber + 12).toString();
-              } else {
-                if (endHourNumber == 12) endHour = "00";
-                else if (endHourNumber < 10) endHour = "0" + endHour;
-              }
-
-              const endMinute = timeRegexMatch[5];
-              const endTime = `${endHour}:${endMinute}:00`;*/
-
+              const startTimeString = timeRegexMatch[1];
+              const endTimeString = timeRegexMatch[2];
+              // Convert AM/PM format to 24-hour format
+              const startTime = convertTo24HourFormat(startTimeString);
+              const endTime = convertTo24HourFormat(endTimeString);
+              
+              // console.log(startTime)
+              // console.log(endTime)
+              
               const dateElement = columns[6].querySelector("div span");
               const dateRegexMatch = dateElement.innerHTML.match("([0-9]{2})/([0-9]{2})/([0-9]{4}) - ([0-9]{2})/([0-9]{2})/([0-9]{4})");
+
+              // console.log(dateRegexMatch)
 
               const startYear = dateRegexMatch[3];
               const startMonth = dateRegexMatch[2];
@@ -183,20 +218,32 @@ async function grabTimetable(email: string, password: string) {
               const locationElement = columns[4].querySelector("div span");
               const location = locationElement.innerHTML;
 
-              courses.push({
-                Name: name,
-                Group: group,
-                Type: type,
-                Start: start,
-                End: end,
-                Location: location,
-              });
+              // console.log(location)
+
+              if (name == null || group == null || type == null || start == null || end == null || location == null){
+                console.log("Warning: Null found in one of the course entries.")
+              }
+              else{
+                courses.push({
+                  Name: name,
+                  Group: group,
+                  Type: type,
+                  Start: start,
+                  End: end,
+                  Location: location,
+                });
+              }
             });
-        });
-
-      return courses;
+      })
+      return courses
     });
-
+    console.log("Running... Scrapping Success")
+    // console.log(scrapedCourses)
+    
+    if (scrapedCourses.length == 0){
+      console.log("Running... No Courses Scrapped!")
+    }
+    
     const events: ics.EventAttributes[] = scrapedCourses.map((scrapedCourse) => {
       const startDateTime = new Date(scrapedCourse.Start);
       const endDateTime = new Date(scrapedCourse.End);
@@ -243,7 +290,7 @@ async function grabTimetable(email: string, password: string) {
         });
   } catch (error) {
     await page.screenshot({ fullPage: true, path: path.join(__dirname, "error.png") });
-    dialog.showErrorBox("Timetable Grabber - SIT", "Something went wrong while navigating IN4SIT!");
+    dialog.showErrorBox("Timetable Grabber - SIT", "Something went wrong while navigating IN4SIT! " + error.toString());
   } finally {
     await browser.close();
   }
