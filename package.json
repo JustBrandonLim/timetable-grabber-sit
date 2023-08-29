@@ -1,6 +1,6 @@
 {
   "name": "timetable-grabber-sit",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Timetable Grabber - SIT is a tool that allows you to grab and export your trimester's timetable to the .ics format where you can import it to your favourite calendar.",
   "main": "./out/main.js",
   "repository": "https://github.com/JustBrandonLim/timetable-grabber-sit.git",
@@ -9,25 +9,63 @@
   "scripts": {
     "tailwind": "tailwindcss -i ./src/common/common.css -o ./out/common/common.css",
     "lint": "eslint -c .eslintrc --ext .ts ./src",
-    "start": "yarn tailwind && yarn lint && tsc && electron ."
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "build": "tsc && tailwindcss -i ./src/common/common.css -o ./out/common/common.css"
   },
   "devDependencies": {
+    "@electron-forge/cli": "^6.4.1",
+    "@electron-forge/maker-deb": "^6.4.1",
+    "@electron-forge/maker-rpm": "^6.4.1",
+    "@electron-forge/maker-squirrel": "^6.4.1",
+    "@electron-forge/maker-zip": "^6.4.1",
+    "@electron-forge/plugin-auto-unpack-natives": "^6.4.1",
     "@types/ws": "^8.5.5",
     "@typescript-eslint/eslint-plugin": "^5.44.0",
     "@typescript-eslint/parser": "^5.44.0",
     "electron": "^21.3.1",
-    "electron-builder": "^23.6.0",
     "eslint": "^8.28.0",
-    "tailwindcss": "^3.2.4",
     "typescript": "^4.9.3"
   },
   "dependencies": {
+    "electron-squirrel-startup": "^1.0.0",
     "ics": "^2.41.0",
-    "puppeteer-core": "^19.4.1"
+    "postcss": "^8.0.9",
+    "puppeteer-core": "^19.4.1",
+    "tailwindcss": "^3.3.3"
   },
   "build": {
     "appId": "com.electron.timetablegrabber-sit",
     "productName": "Timetable Grabber - SIT",
     "asar": "false"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "electron_quick_start"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
   }
 }
