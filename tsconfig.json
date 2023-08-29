@@ -11,5 +11,8 @@
     },
     "esModuleInterop": true,
   },
-  "include": ["src/**/*"]
+  "include": [
+    "src/**/*",
+    "src/common/**/*" // Include the common folder and its contents
+  ]
 }
