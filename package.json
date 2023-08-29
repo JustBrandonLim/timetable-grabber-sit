@@ -13,7 +13,7 @@
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
-    "build": "tsc"
+    "build": "tsc && tailwindcss -i ./src/common/common.css -o ./out/common/common.css"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.4.1",
