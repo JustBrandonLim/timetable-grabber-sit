@@ -9,7 +9,7 @@
   "scripts": {
     "tailwind": "tailwindcss -i ./src/common/common.css -o ./out/common/common.css",
     "lint": "eslint -c .eslintrc --ext .ts ./src",
-    "start": "electron-forge start",
+    "start": "electron ./out/main.js",
     "package": "electron-forge package",
     "make": "electron-forge make",
     "build": "tsc"
