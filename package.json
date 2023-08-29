@@ -1,6 +1,6 @@
 {
   "name": "timetable-grabber-sit",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Timetable Grabber - SIT is a tool that allows you to grab and export your trimester's timetable to the .ics format where you can import it to your favourite calendar.",
   "main": "./out/main.js",
   "repository": "https://github.com/JustBrandonLim/timetable-grabber-sit.git",
@@ -9,9 +9,10 @@
   "scripts": {
     "tailwind": "tailwindcss -i ./src/common/common.css -o ./out/common/common.css",
     "lint": "eslint -c .eslintrc --ext .ts ./src",
-    "start": "electron ./out/main.js",
+    "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
+    "publish": "electron-forge publish",
     "build": "tsc"
   },
   "devDependencies": {
@@ -39,5 +40,32 @@
     "appId": "com.electron.timetablegrabber-sit",
     "productName": "Timetable Grabber - SIT",
     "asar": "false"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "electron_quick_start"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
   }
 }

@@ -44,7 +44,7 @@ async function grabTimetable(email: string, password: string) {
 
   const browser = await puppeteer.launch({
     executablePath: revisionInfo.executablePath,
-    headless: "new",
+    headless: true,
     args: ["--start-maximized", "--window-size=1920,1080"],
     defaultViewport: null,
   });
