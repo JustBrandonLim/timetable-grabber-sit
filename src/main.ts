@@ -5,6 +5,20 @@ import * as ics from "ics";
 import * as fs from "fs";
 import WebSocket from 'ws';
 
+// Handle setupevents as quickly as possible
+const setupEvents = require('./installers/setupEvents');
+if (setupEvents.handleSquirrelEvent()) {
+  // squirrel event handled and app will exit in 1000ms, so don't do anything else
+  process.exit(0);
+}
+// Example IPC communication
+ipcMain.on('some-event', (event, data) => {
+  // Handle the received data
+});
+// Continue with the rest of your Electron code here
+
+
+
 // Setup websocket for feedback on frontend.
 // const WebSocket = require('ws');
 const wss = new WebSocket.Server({ port: 8080 });
