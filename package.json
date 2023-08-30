@@ -13,7 +13,11 @@
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
-    "build": "tsc && tailwindcss -i ./src/common/common.css -o ./out/common/common.css"
+    "build": "tsc && tailwindcss -i ./src/common/common.css -o ./out/common/common.css",
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds",
+    "package-win": "electron-packager . timetable-grabber-sit --overwrite --asar --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"timetable-grabber-sit\"",
+    "package-linux": "electron-packager . timetable-grabber-sit --overwrite --asar --platform=linux --arch=x64 --icon=assets/icons/png/icon.png --prune=true --out=release-builds",
+    "create-installer-win": "node installers/windows/createinstaller.js"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.4.1",
@@ -25,11 +29,14 @@
     "@types/ws": "^8.5.5",
     "@typescript-eslint/eslint-plugin": "^5.44.0",
     "@typescript-eslint/parser": "^5.44.0",
-    "electron": "^21.3.1",
+    "electron": "^26.1.0",
+    "electron-winstaller": "^5.1.0",
     "eslint": "^8.28.0",
     "typescript": "^4.9.3"
   },
   "dependencies": {
+    "asar": "^3.2.0",
+    "electron-packager": "^17.1.2",
     "electron-squirrel-startup": "^1.0.0",
     "ics": "^2.41.0",
     "postcss": "^8.0.9",
